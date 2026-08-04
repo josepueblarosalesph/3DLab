@@ -17,9 +17,9 @@
         <x-slot:actions><label for="admin-drawer"><x-icon name="o-bars-3" class="cursor-pointer" /></label></x-slot:actions>
     </x-nav>
     <x-main full-width>
-        <x-slot:sidebar drawer="admin-drawer" collapsible class="bg-[#161616] text-white border-r-0">
+        <x-slot:sidebar drawer="admin-drawer" collapsible class="admin-sidebar bg-[#161616] text-white border-r-0">
             <div class="p-5 mb-4"><a href="{{ route('admin.dashboard') }}" class="font-display text-xl font-bold tracking-tight">OPEN LAB <span class="text-[#ff5c35]">/</span></a><p class="text-xs text-white/45 mt-1">Gestión de contenidos</p></div>
-            <x-menu activate-by-route class="[&_a]:text-white/70 [&_a:hover]:bg-white/10 [&_a:hover]:text-white">
+            <x-menu activate-by-route>
                 <x-menu-item title="Resumen" icon="o-squares-2x2" :link="route('admin.dashboard')" />
                 <x-menu-item title="Publicaciones" icon="o-newspaper" :link="route('admin.posts.index')" />
                 <x-menu-item title="Nueva publicación" icon="o-plus-circle" :link="route('admin.posts.create')" />

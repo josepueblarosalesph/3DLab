@@ -72,6 +72,10 @@ button, input, select, textarea { font:inherit; }
 .admin-content .btn:not(.openlab-primary) span,.admin-content .btn:not(.openlab-primary) svg { color:inherit !important; }
 .admin-content .btn-ghost:not(.text-error):hover { background:rgba(23,23,20,.08) !important; color:#080808 !important; }
 .admin-content .btn.text-error { color:#b42318 !important; }
+.admin-sidebar .menu li>a { color:rgba(255,255,255,.72) !important; background:transparent; }
+.admin-sidebar .menu li>a span,.admin-sidebar .menu li>a svg { color:inherit !important; }
+.admin-sidebar .menu li>a:hover { color:#fff !important; background:rgba(255,255,255,.1) !important; }
+.admin-sidebar .menu li>a.mary-active-menu { color:#fff !important; background:rgba(255,255,255,.14) !important; }
 
 @media(max-width:900px){
   .site-header { grid-template-columns:1fr auto; height:68px; }.desktop-nav,.nav-cta { display:none; }.menu-toggle { display:block; border:0; background:transparent; text-transform:uppercase; font-size:11px; letter-spacing:.1em; }.mobile-nav { position:absolute; display:flex; flex-direction:column; top:68px; left:0; right:0; background:var(--paper); border-bottom:1px solid var(--line); padding:22px; gap:18px; font:500 22px 'Space Grotesk'; }
