@@ -1,8 +1,9 @@
 <x-public-layout>
     <section class="hero">
-        <video autoplay muted loop playsinline preload="auto" aria-hidden="true">
-            <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260715_090628_7052d8a6-a094-4341-a4a2-ad58493a67a9.mp4" type="video/mp4">
-        </video>
+        <div class="hero-art" aria-hidden="true"></div>
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-scan" aria-hidden="true"></div>
+        <div class="hero-coordinates" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
         <div class="hero-overlay"></div>
         <div class="hero-topline"><span>Hub de innovación tecnológica & I+D</span><span>33.4° S · 70.6° W</span></div>
         <div class="hero-copy">
