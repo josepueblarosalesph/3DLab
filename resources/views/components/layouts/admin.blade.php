@@ -32,7 +32,7 @@
                 <form method="POST" action="{{ route('admin.logout') }}">@csrf<x-button type="submit" label="Cerrar sesión" icon="o-arrow-left-start-on-rectangle" class="btn-sm btn-ghost text-white/60" /></form>
             </div>
         </x-slot:sidebar>
-        <x-slot:content><div class="max-w-7xl mx-auto px-4 py-6 lg:px-10 lg:py-10">{{ $slot }}</div></x-slot:content>
+        <x-slot:content><div class="admin-content max-w-7xl mx-auto px-4 py-6 lg:px-10 lg:py-10">{{ $slot }}</div></x-slot:content>
     </x-main>
     <x-toast />
     @livewireScripts
