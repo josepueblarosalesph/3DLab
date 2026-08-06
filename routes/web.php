@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Livewire\Admin\InquiryIndex;
+use App\Livewire\Admin\PageEditor;
 use App\Livewire\Admin\PostForm;
 use App\Livewire\Admin\PostIndex;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,7 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+    Route::get('/sitio', PageEditor::class)->name('site.edit');
     Route::get('/publicaciones', PostIndex::class)->name('posts.index');
     Route::get('/publicaciones/nueva', PostForm::class)->name('posts.create');
     Route::get('/publicaciones/{post}/editar', PostForm::class)->name('posts.edit');

@@ -1,3 +1,5 @@
+@props(['title' => null, 'siteContent' => null])
+@php($siteContent = $siteContent ?? \App\Models\PageContent::home()->content)
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
@@ -44,15 +46,15 @@
 
     <footer class="site-footer">
         <div class="footer-lead">
-            <span class="eyebrow light">Hagamos algo relevante</span>
-            <h2>Ideas abiertas.<br>Impacto real.</h2>
+            <span class="eyebrow light">{{ data_get($siteContent, 'footer.eyebrow') }}</span>
+            <h2>{!! nl2br(e(data_get($siteContent, 'footer.title'))) !!}</h2>
             <a href="{{ route('home') }}#contacto" class="circle-link" aria-label="Ir a contacto">↗</a>
         </div>
         <div class="footer-grid">
-            <div><strong>Open Lab</strong><p>Hub de innovación tecnológica,<br>fabricación digital e I+D.</p></div>
-            <div><span>Contacto</span><a href="mailto:contacto@openlab.cl">contacto@openlab.cl</a><p>Santiago, Chile</p></div>
+            <div><strong>Open Lab</strong><p>{{ data_get($siteContent, 'footer.description') }}</p></div>
+            <div><span>Contacto</span><a href="mailto:{{ data_get($siteContent, 'footer.email') }}">{{ data_get($siteContent, 'footer.email') }}</a><p>{{ data_get($siteContent, 'footer.location') }}</p></div>
             <div><span>Explora</span><a href="{{ route('blog.index') }}">Actualidad</a><a href="{{ route('login') }}">Acceso equipo</a></div>
-            <div><span>Síguenos</span><a href="#">Instagram ↗</a><a href="#">LinkedIn ↗</a></div>
+            <div><span>Síguenos</span><a href="{{ data_get($siteContent, 'footer.instagram_url') ?: '#' }}">Instagram ↗</a><a href="{{ data_get($siteContent, 'footer.linkedin_url') ?: '#' }}">LinkedIn ↗</a></div>
         </div>
         <div class="footer-bottom"><span>© {{ date('Y') }} Open Lab</span><span>Academia × Industria × Salud</span></div>
     </footer>

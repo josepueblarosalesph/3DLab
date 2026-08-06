@@ -1,66 +1,65 @@
-<x-public-layout>
+<x-public-layout :site-content="$content">
     <section class="hero">
-        <div class="hero-art" aria-hidden="true"></div>
+        <div class="hero-art @if(data_get($content, 'hero.image')) has-custom-image @endif" @if(data_get($content, 'hero.image')) style="background-image:url('{{ asset('storage/'.data_get($content, 'hero.image')) }}')" @endif aria-hidden="true"></div>
         <div class="hero-grid" aria-hidden="true"></div>
         <div class="hero-scan" aria-hidden="true"></div>
         <div class="hero-coordinates" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
         <div class="hero-overlay"></div>
-        <div class="hero-topline"><span>Hub de innovación tecnológica & I+D</span><span>33.4° S · 70.6° W</span></div>
+        <div class="hero-topline"><span>{{ data_get($content, 'hero.eyebrow') }}</span><span>33.4° S · 70.6° W</span></div>
         <div class="hero-copy">
-            <h1>Prototipamos<br>el futuro.</h1>
-            <p>Transformamos ideas complejas en soluciones tecnológicas con impacto real, conectando academia, investigación, industria y salud.</p>
-            <div class="hero-actions"><a href="#capacidades">Explora capacidades ↓</a><a href="#contacto">Inicia un proyecto ↗</a></div>
+            <h1>{!! nl2br(e(data_get($content, 'hero.title'))) !!}</h1>
+            <p>{{ data_get($content, 'hero.description') }}</p>
+            <div class="hero-actions"><a href="#capacidades">{{ data_get($content, 'hero.primary_cta') }} ↓</a><a href="#contacto">{{ data_get($content, 'hero.secondary_cta') }} ↗</a></div>
         </div>
-        <div class="hero-index"><span>OPEN / 01</span><span>Diseñar · Fabricar · Validar</span></div>
+        <div class="hero-index"><span>OPEN / 01</span><span>{{ data_get($content, 'hero.strapline') }}</span></div>
     </section>
 
     <section id="acerca" class="section intro-section">
         <div class="section-index"><span>01</span><span>Qué somos</span></div>
         <div class="intro-main">
-            <span class="eyebrow">Un ecosistema de desarrollo</span>
-            <h2>Más que un laboratorio: un espacio abierto para convertir conocimiento en soluciones.</h2>
-            <p>No solo fabricamos piezas. Articulamos talento, tecnología y metodologías avanzadas dentro de un ecosistema universitario y clínico que acelera la transferencia tecnológica.</p>
+            <span class="eyebrow">{{ data_get($content, 'intro.eyebrow') }}</span>
+            <h2>{{ data_get($content, 'intro.title') }}</h2>
+            <p>{{ data_get($content, 'intro.description') }}</p>
         </div>
         <div class="impact-grid">
-            <div><strong>+120</strong><span>Prototipos y soluciones desarrolladas</span></div>
-            <div><strong>03</strong><span>Líneas estratégicas: academia, industria y salud</span></div>
-            <div><strong>100%</strong><span>Conectados con redes de investigación y transferencia</span></div>
+            @foreach(data_get($content, 'intro.stats', []) as $stat)
+                <div><strong>{{ data_get($stat, 'value') }}</strong><span>{{ data_get($stat, 'label') }}</span></div>
+            @endforeach
         </div>
     </section>
 
     <section id="capacidades" class="section capabilities-section">
         <div class="section-index"><span>02</span><span>Capacidades</span></div>
         <div class="section-heading split">
-            <h2>Tecnología aplicada<br>a desafíos reales.</h2>
-            <p>Acompañamos desde la pregunta inicial hasta el prototipo validado, combinando infraestructura avanzada y conocimiento multidisciplinario.</p>
+            <h2>{!! nl2br(e(data_get($content, 'capabilities.title'))) !!}</h2>
+            <p>{{ data_get($content, 'capabilities.description') }}</p>
         </div>
         <div class="capability-list">
-            <article><span class="cap-number">01</span><div><h3>Fabricación digital<br>& prototipado</h3><p>Impresión 3D avanzada, escaneo, corte y manufactura para acelerar procesos de investigación y desarrollo.</p><span class="cap-tags">FDM · SLA · SLS · CNC</span></div><span class="cap-arrow">↗</span></article>
-            <article><span class="cap-number">02</span><div><h3>I+D para startups<br>& empresas</h3><p>Diseño, validación y escalamiento de productos para emprendimientos científico-tecnológicos y equipos de innovación.</p><span class="cap-tags">DISEÑO · ITERACIÓN · VALIDACIÓN</span></div><span class="cap-arrow">↗</span></article>
-            <article class="featured"><span class="cap-number">03</span><div><span class="focus-label">Foco estratégico</span><h3>Ingeniería &<br>prototipado médico</h3><p>Modelos anatómicos, fantomas, simuladores y dispositivos desarrollados junto a equipos clínicos.</p><span class="cap-tags">SALUD · SIMULACIÓN · PRECISIÓN</span></div><span class="cap-arrow">↗</span></article>
-            <article><span class="cap-number">04</span><div><h3>Formación<br>& workshops</h3><p>Talleres prácticos y metodologías de diseño integradas a asignaturas, equipos y comunidades.</p><span class="cap-tags">MAKER · DESIGN THINKING · STEAM</span></div><span class="cap-arrow">↗</span></article>
+            @foreach(data_get($content, 'capabilities.items', []) as $index => $item)
+                <article @class(['featured' => $index === 2])><span class="cap-number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span><div>@if($index === 2)<span class="focus-label">Foco estratégico</span>@endif<h3>{{ data_get($item, 'title') }}</h3><p>{{ data_get($item, 'description') }}</p><span class="cap-tags">{{ data_get($item, 'tags') }}</span></div><span class="cap-arrow">↗</span></article>
+            @endforeach
         </div>
     </section>
 
     <section id="proyectos" class="projects-section">
         <div class="section-index light"><span>03</span><span>Casos seleccionados</span></div>
-        <div class="project-intro"><h2>Cuando las disciplinas<br>se encuentran.</h2><p>Proyectos que muestran cómo la colaboración multidisciplinaria se convierte en innovación aplicada.</p></div>
+        <div class="project-intro"><h2>{!! nl2br(e(data_get($content, 'projects.title'))) !!}</h2><p>{{ data_get($content, 'projects.description') }}</p></div>
         <div class="project-grid">
-            <article class="project-card medical"><div class="project-visual"><span class="orb one"></span><span class="mesh"></span></div><div class="project-meta"><span>Salud / 2026</span><h3>Simulador anatómico de alta fidelidad</h3><p>Planificación quirúrgica y validación clínica conjunta.</p></div></article>
-            <article class="project-card tech"><div class="project-visual"><span class="orb two"></span><span class="mesh"></span></div><div class="project-meta"><span>Tecnología / 2026</span><h3>Dispositivo IoT para monitoreo industrial</h3><p>Del concepto al primer lote funcional.</p></div></article>
-            <article class="project-card academy"><div class="project-visual"><span class="orb three"></span><span class="mesh"></span></div><div class="project-meta"><span>Academia / 2025</span><h3>Desafío Maker interdisciplinario</h3><p>Estudiantes conectados con problemas reales.</p></div></article>
+            @foreach(data_get($content, 'projects.items', []) as $index => $project)
+                <article class="project-card {{ ['medical', 'tech', 'academy'][$index] ?? 'medical' }}"><div class="project-visual @if(data_get($project, 'image')) has-image @endif" @if(data_get($project, 'image')) style="background-image:url('{{ asset('storage/'.data_get($project, 'image')) }}')" @endif>@unless(data_get($project, 'image'))<span class="orb {{ ['one', 'two', 'three'][$index] ?? 'one' }}"></span><span class="mesh"></span>@endunless</div><div class="project-meta"><span>{{ data_get($project, 'category') }} / {{ data_get($project, 'year') }}</span><h3>{{ data_get($project, 'title') }}</h3><p>{{ data_get($project, 'description') }}</p></div></article>
+            @endforeach
         </div>
     </section>
 
     <section class="section network-section">
         <div class="section-index"><span>04</span><span>Red de excelencia</span></div>
-        <div class="network-copy"><h2>Conectamos capacidades que por separado no generarían el mismo impacto.</h2><p>Nuestra ventaja está en habitar un ecosistema universitario y clínico robusto, articulando expertises bajo estándares rigurosos de calidad, transparencia y ética.</p></div>
+        <div class="network-copy"><h2>{{ data_get($content, 'network.title') }}</h2><p>{{ data_get($content, 'network.description') }}</p></div>
         <div class="network-lines"><span>ACADEMIA</span><i>×</i><span>INDUSTRIA</span><i>×</i><span>SALUD</span><i>=</i><strong>OPEN LAB</strong></div>
     </section>
 
     <section class="section news-section">
         <div class="section-index"><span>05</span><span>Actualidad</span></div>
-        <div class="section-heading split"><h2>Investigación<br>en movimiento.</h2><a href="{{ route('blog.index') }}">Ver todas las publicaciones ↗</a></div>
+        <div class="section-heading split"><h2>{!! nl2br(e(data_get($content, 'news.title'))) !!}</h2><a href="{{ route('blog.index') }}">Ver todas las publicaciones ↗</a></div>
         <div class="news-grid">
             @forelse($posts as $post)
                 <a href="{{ route('blog.show', $post) }}" class="news-card">
@@ -75,7 +74,7 @@
     </section>
 
     <section id="contacto" class="contact-section">
-        <div class="contact-copy"><span class="eyebrow light">Inicia una colaboración</span><h2>¿Qué podemos<br>prototipar juntos?</h2><p>Cuéntanos brevemente tu desafío. Nuestro equipo revisará el requerimiento y te contactará para definir el siguiente paso.</p></div>
+        <div class="contact-copy"><span class="eyebrow light">{{ data_get($content, 'contact.eyebrow') }}</span><h2>{!! nl2br(e(data_get($content, 'contact.title'))) !!}</h2><p>{{ data_get($content, 'contact.description') }}</p></div>
         <livewire:contact-form />
     </section>
 </x-public-layout>

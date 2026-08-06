@@ -21,6 +21,7 @@
             <div class="p-5 mb-4"><a href="{{ route('admin.dashboard') }}" class="font-display text-xl font-bold tracking-tight">OPEN LAB <span class="text-[#ff5c35]">/</span></a><p class="text-xs text-white/45 mt-1">Gestión de contenidos</p></div>
             <x-menu activate-by-route>
                 <x-menu-item title="Resumen" icon="o-squares-2x2" :link="route('admin.dashboard')" />
+                <x-menu-item title="Editar sitio" icon="o-paint-brush" :link="route('admin.site.edit')" />
                 <x-menu-item title="Publicaciones" icon="o-newspaper" :link="route('admin.posts.index')" />
                 <x-menu-item title="Nueva publicación" icon="o-plus-circle" :link="route('admin.posts.create')" />
                 <x-menu-item title="Consultas" icon="o-inbox" :link="route('admin.inquiries.index')" />

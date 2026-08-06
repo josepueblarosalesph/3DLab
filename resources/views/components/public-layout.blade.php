@@ -1,2 +1,2 @@
-@props(['title' => null])
-<x-layouts.app :title="$title">{{ $slot }}</x-layouts.app>
+@props(['title' => null, 'siteContent' => null])
+<x-layouts.app :title="$title" :site-content="$siteContent">{{ $slot }}</x-layouts.app>

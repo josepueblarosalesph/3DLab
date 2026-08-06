@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\PageContent;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -11,6 +12,8 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        PageContent::firstOrCreate(['page' => 'home'], ['content' => PageContent::defaults()]);
+
         User::updateOrCreate(
             ['email' => env('ADMIN_EMAIL', 'admin@openlab.cl')],
             ['name' => 'Equipo Open Lab', 'password' => Hash::make(env('ADMIN_PASSWORD', 'OpenLab2026!'))]
