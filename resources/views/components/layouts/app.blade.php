@@ -22,8 +22,8 @@
 <body class="public-site">
     <header class="site-header" x-data="{ open: false }">
         <a href="{{ route('home') }}" class="brand" aria-label="Open Lab, inicio">
-            <span class="brand-symbol" aria-hidden="true"><i></i><i></i></span>
-            <span>OPEN LAB</span>
+            <span class="brand-pluses" aria-hidden="true"><i>+</i><i>+</i></span>
+            <span class="brand-word"><b>open</b><em>lab</em></span>
         </a>
         <nav class="desktop-nav" aria-label="Navegación principal">
             <a href="{{ route('home') }}#acerca">Nosotros</a>
@@ -51,7 +51,7 @@
             <a href="{{ route('home') }}#contacto" class="circle-link" aria-label="Ir a contacto">↗</a>
         </div>
         <div class="footer-grid">
-            <div><strong>Open Lab</strong><p>{{ data_get($siteContent, 'footer.description') }}</p></div>
+            <div><strong class="footer-brand"><b>open</b><em>lab</em></strong><p>{{ data_get($siteContent, 'footer.description') }}</p></div>
             <div><span>Contacto</span><a href="mailto:{{ data_get($siteContent, 'footer.email') }}">{{ data_get($siteContent, 'footer.email') }}</a><p>{{ data_get($siteContent, 'footer.location') }}</p></div>
             <div><span>Explora</span><a href="{{ route('blog.index') }}">Actualidad</a><a href="{{ route('login') }}">Acceso equipo</a></div>
             <div><span>Síguenos</span><a href="{{ data_get($siteContent, 'footer.instagram_url') ?: '#' }}">Instagram ↗</a><a href="{{ data_get($siteContent, 'footer.linkedin_url') ?: '#' }}">LinkedIn ↗</a></div>
