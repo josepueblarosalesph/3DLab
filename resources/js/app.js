@@ -60,6 +60,10 @@ const setupScrollReveal = () => {
     }, { passive: true });
 
     const observer = new IntersectionObserver((entries) => {
+        const enteringEntries = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((first, second) => first.boundingClientRect.top - second.boundingClientRect.top);
+
         entries.forEach((entry) => {
             const revealOrigin = scrollDirection === 'bottom' ? 'top' : 'bottom';
             entry.target.dataset.revealFrom = revealOrigin;
@@ -73,10 +77,11 @@ const setupScrollReveal = () => {
 
             entry.target.classList.add('is-revealed');
 
-            const delay = Number(entry.target.dataset.revealDelay ?? 0);
+            const verticalOrder = enteringEntries.indexOf(entry);
+            const delay = verticalOrder >= 0 ? verticalOrder * 160 : 0;
             const translate = prefersReducedMotion
                 ? 'translate3d(0,0,0)'
-                : `translate3d(0,${revealOrigin === 'top' ? '-32px' : '32px'},0)`;
+                : `translate3d(0,${revealOrigin === 'top' ? '-72px' : '72px'},0)`;
             const initialClip = revealOrigin === 'top'
                 ? 'inset(0 0 100% 0)'
                 : 'inset(100% 0 0 0)';
@@ -113,11 +118,10 @@ const setupScrollReveal = () => {
             ? [root, ...root.querySelectorAll(revealSelector)]
             : [...root.querySelectorAll(revealSelector)];
 
-        elements.forEach((element, index) => {
+        elements.forEach((element) => {
             if (observedElements.has(element)) return;
 
             element.classList.add('scroll-reveal');
-            element.dataset.revealDelay = String(Math.min(index % 4, 3) * 110);
             observedElements.add(element);
 
             // Wait for the hidden state to be painted before checking visibility.

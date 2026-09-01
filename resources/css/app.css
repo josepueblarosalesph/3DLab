@@ -294,11 +294,11 @@ html,.public-site { background:var(--paper-soft); }
 /* Replays as content enters the viewport in either scroll direction. */
 .scroll-reveal {
   opacity:0;
-  transform:translate3d(0,-32px,0);
+  transform:translate3d(0,-72px,0);
   clip-path:inset(0 0 100% 0);
   will-change:opacity,transform,clip-path;
 }
-.scroll-reveal[data-reveal-from='bottom'] { transform:translate3d(0,32px,0); clip-path:inset(100% 0 0 0); }
+.scroll-reveal[data-reveal-from='bottom'] { transform:translate3d(0,72px,0); clip-path:inset(100% 0 0 0); }
 .scroll-reveal.is-revealed { opacity:1; transform:translate3d(0,0,0); clip-path:inset(0); }
 
 @media(prefers-reduced-motion:reduce){
