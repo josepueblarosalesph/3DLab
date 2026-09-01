@@ -61,7 +61,8 @@ const setupScrollReveal = () => {
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-            entry.target.dataset.revealFrom = scrollDirection;
+            const revealOrigin = scrollDirection === 'bottom' ? 'top' : 'bottom';
+            entry.target.dataset.revealFrom = revealOrigin;
 
             revealAnimations.get(entry.target)?.cancel();
 
@@ -75,10 +76,21 @@ const setupScrollReveal = () => {
             const delay = Number(entry.target.dataset.revealDelay ?? 0);
             const translate = prefersReducedMotion
                 ? 'translate3d(0,0,0)'
-                : `translate3d(0,${scrollDirection === 'bottom' ? '32px' : '-32px'},0)`;
+                : `translate3d(0,${revealOrigin === 'top' ? '-32px' : '32px'},0)`;
+            const initialClip = revealOrigin === 'top'
+                ? 'inset(0 0 100% 0)'
+                : 'inset(100% 0 0 0)';
             const animation = entry.target.animate([
-                { opacity: 0, transform: translate },
-                { opacity: 1, transform: 'translate3d(0,0,0)' },
+                {
+                    opacity: 0,
+                    transform: translate,
+                    clipPath: prefersReducedMotion ? 'inset(0)' : initialClip,
+                },
+                {
+                    opacity: 1,
+                    transform: 'translate3d(0,0,0)',
+                    clipPath: 'inset(0)',
+                },
             ], {
                 duration: prefersReducedMotion ? 480 : 1250,
                 delay,
