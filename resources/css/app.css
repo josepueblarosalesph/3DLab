@@ -294,15 +294,12 @@ html,.public-site { background:var(--paper-soft); }
 /* Replays as content enters the viewport in either scroll direction. */
 .scroll-reveal {
   opacity:0;
-  transform:translate3d(0,24px,0);
-  transition:
-    opacity .68s cubic-bezier(.22,1,.36,1) var(--reveal-delay,0ms),
-    transform .68s cubic-bezier(.22,1,.36,1) var(--reveal-delay,0ms);
+  transform:translate3d(0,32px,0);
   will-change:opacity,transform;
 }
-.scroll-reveal[data-reveal-from='top'] { transform:translate3d(0,-24px,0); }
+.scroll-reveal[data-reveal-from='top'] { transform:translate3d(0,-32px,0); }
 .scroll-reveal.is-revealed { opacity:1; transform:translate3d(0,0,0); }
 
 @media(prefers-reduced-motion:reduce){
-  .scroll-reveal,.scroll-reveal[data-reveal-from='top'] { opacity:1; transform:none; transition:none; }
+  .scroll-reveal,.scroll-reveal[data-reveal-from='top'] { transform:none; }
 }
