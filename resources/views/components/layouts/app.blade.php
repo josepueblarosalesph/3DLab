@@ -13,17 +13,13 @@
     <meta property="og:image" content="{{ asset('og.png') }}">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="{{ asset('og.png') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
 <body class="public-site">
     <header class="site-header" x-data="{ open: false }">
         <a href="{{ route('home') }}" class="brand" aria-label="Open Lab, inicio">
-            <span class="brand-pluses" aria-hidden="true"><i>+</i><i>+</i></span>
-            <span class="brand-word"><b>open</b><em>lab</em></span>
+            <img src="{{ asset('images/openlab-logo-color.png') }}" alt="Open Lab">
         </a>
         <nav class="desktop-nav" aria-label="Navegación principal">
             <a href="{{ route('home') }}#acerca">Nosotros</a>
@@ -51,7 +47,7 @@
             <a href="{{ route('home') }}#contacto" class="circle-link" aria-label="Ir a contacto">↗</a>
         </div>
         <div class="footer-grid">
-            <div><strong class="footer-brand"><b>open</b><em>lab</em></strong><p>{{ data_get($siteContent, 'footer.description') }}</p></div>
+            <div><strong class="footer-brand"><img src="{{ asset('images/openlab-logo-white.png') }}" alt="Open Lab"></strong><p>{{ data_get($siteContent, 'footer.description') }}</p></div>
             <div><span>Contacto</span><a href="mailto:{{ data_get($siteContent, 'footer.email') }}">{{ data_get($siteContent, 'footer.email') }}</a><p>{{ data_get($siteContent, 'footer.location') }}</p></div>
             <div><span>Explora</span><a href="{{ route('blog.index') }}">Actualidad</a><a href="{{ route('login') }}">Acceso equipo</a></div>
             <div><span>Síguenos</span><a href="{{ data_get($siteContent, 'footer.instagram_url') ?: '#' }}">Instagram ↗</a><a href="{{ data_get($siteContent, 'footer.linkedin_url') ?: '#' }}">LinkedIn ↗</a></div>
