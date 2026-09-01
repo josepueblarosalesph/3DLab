@@ -129,16 +129,23 @@ const setupScrollReveal = () => {
         const elements = root.matches?.(revealSelector)
             ? [root, ...root.querySelectorAll(revealSelector)]
             : [...root.querySelectorAll(revealSelector)];
+        const newElements = [];
 
         elements.forEach((element) => {
             if (observedElements.has(element)) return;
 
             element.classList.add('scroll-reveal');
             observedElements.add(element);
+            newElements.push(element);
+        });
 
-            // Wait for the hidden state to be painted before checking visibility.
+        if (!newElements.length) return;
+
+        // Register the whole group in one frame so visible elements are delivered
+        // together and can be animated in true top-to-bottom order.
+        requestAnimationFrame(() => {
             requestAnimationFrame(() => {
-                requestAnimationFrame(() => observer.observe(element));
+                newElements.forEach((element) => observer.observe(element));
             });
         });
     };
