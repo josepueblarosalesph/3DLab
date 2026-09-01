@@ -1,49 +1,28 @@
 const revealSelector = [
-    '.site-header .brand',
-    '.site-header .desktop-nav > a',
-    '.site-header .nav-cta',
-    '.hero-art',
-    '.hero-coordinates > i',
-    '.hero-topline > span',
-    '.hero-copy > h1',
-    '.hero-copy > p',
-    '.hero-actions > a',
-    '.hero-index > span',
-    'main > section:not(.hero) > .section-index > span',
-    '.intro-main > *',
-    '.impact-grid > div > *',
-    '.section-heading > *',
-    '.capability-list > article > .cap-number',
-    '.capability-list > article h3',
-    '.capability-list > article p',
-    '.capability-list > article .cap-tags',
-    '.capability-list > article .focus-label',
-    '.capability-list > article .cap-arrow',
-    '.project-intro > *',
-    '.project-card > .project-visual',
-    '.project-card > .project-meta > *',
-    '.network-copy > *',
-    '.network-lines > *',
-    '.news-card > .news-image',
-    '.news-card > span',
-    '.news-card > h3',
-    '.news-card > p',
-    '.news-card > i',
-    '.empty-news > *',
-    '.contact-copy > *',
-    '.contact-form > label',
-    '.contact-form > button',
-    '.form-success > *',
-    '.page-hero > *',
-    '.article-page > header > *',
+    '.hero-topline',
+    '.hero-copy',
+    '.hero-index',
+    'main > section:not(.hero) > .section-index',
+    '.intro-main',
+    '.impact-grid',
+    '.section-heading',
+    '.capability-list',
+    '.project-intro',
+    '.project-grid',
+    '.network-copy',
+    '.network-lines',
+    '.news-grid',
+    '.contact-copy',
+    '.contact-form',
+    '.form-success',
+    '.page-hero',
+    '.article-page > header',
     '.article-cover',
-    '.article-body > *',
+    '.article-body',
     '.back-link',
-    '.site-footer .footer-lead > .eyebrow',
-    '.site-footer .footer-lead > h2',
-    '.site-footer .footer-lead > .circle-link',
-    '.site-footer .footer-grid > div > *',
-    '.site-footer .footer-bottom > *',
+    '.site-footer .footer-lead',
+    '.site-footer .footer-grid',
+    '.site-footer .footer-bottom',
 ].join(',');
 
 const setupScrollReveal = () => {
@@ -82,30 +61,15 @@ const setupScrollReveal = () => {
             const translate = prefersReducedMotion
                 ? 'translate3d(0,0,0)'
                 : `translate3d(0,${revealOrigin === 'top' ? '-72px' : '72px'},0)`;
-            const initialClip = revealOrigin === 'top'
-                ? 'inset(0 0 100% 0)'
-                : 'inset(100% 0 0 0)';
             const animation = entry.target.animate([
                 {
-                    opacity: prefersReducedMotion ? 0 : 0.35,
+                    opacity: 0,
                     transform: translate,
-                    clipPath: prefersReducedMotion ? 'inset(0)' : initialClip,
                     offset: 0,
-                },
-                {
-                    opacity: 0.82,
-                    transform: prefersReducedMotion
-                        ? 'translate3d(0,0,0)'
-                        : `translate3d(0,${revealOrigin === 'top' ? '-24px' : '24px'},0)`,
-                    clipPath: prefersReducedMotion
-                        ? 'inset(0)'
-                        : (revealOrigin === 'top' ? 'inset(0 0 38% 0)' : 'inset(38% 0 0 0)'),
-                    offset: 0.62,
                 },
                 {
                     opacity: 1,
                     transform: 'translate3d(0,0,0)',
-                    clipPath: 'inset(0)',
                     offset: 1,
                 },
             ], {
@@ -152,13 +116,6 @@ const setupScrollReveal = () => {
 
     observeElements();
 
-    new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            mutation.addedNodes.forEach((node) => {
-                if (node instanceof HTMLElement) observeElements(node);
-            });
-        });
-    }).observe(document.body, { childList: true, subtree: true });
 };
 
 if (document.readyState === 'loading') {
