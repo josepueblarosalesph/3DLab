@@ -80,7 +80,7 @@ const setupScrollReveal = () => {
                 { opacity: 0, transform: translate },
                 { opacity: 1, transform: 'translate3d(0,0,0)' },
             ], {
-                duration: prefersReducedMotion ? 320 : 820,
+                duration: prefersReducedMotion ? 480 : 1250,
                 delay,
                 easing: 'cubic-bezier(.22,1,.36,1)',
                 fill: 'both',
@@ -105,7 +105,7 @@ const setupScrollReveal = () => {
             if (observedElements.has(element)) return;
 
             element.classList.add('scroll-reveal');
-            element.dataset.revealDelay = String(Math.min(index % 4, 3) * 70);
+            element.dataset.revealDelay = String(Math.min(index % 4, 3) * 110);
             observedElements.add(element);
 
             // Wait for the hidden state to be painted before checking visibility.
