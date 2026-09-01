@@ -87,14 +87,26 @@ const setupScrollReveal = () => {
                 : 'inset(100% 0 0 0)';
             const animation = entry.target.animate([
                 {
-                    opacity: 0,
+                    opacity: prefersReducedMotion ? 0 : 0.35,
                     transform: translate,
                     clipPath: prefersReducedMotion ? 'inset(0)' : initialClip,
+                    offset: 0,
+                },
+                {
+                    opacity: 0.82,
+                    transform: prefersReducedMotion
+                        ? 'translate3d(0,0,0)'
+                        : `translate3d(0,${revealOrigin === 'top' ? '-24px' : '24px'},0)`,
+                    clipPath: prefersReducedMotion
+                        ? 'inset(0)'
+                        : (revealOrigin === 'top' ? 'inset(0 0 38% 0)' : 'inset(38% 0 0 0)'),
+                    offset: 0.62,
                 },
                 {
                     opacity: 1,
                     transform: 'translate3d(0,0,0)',
                     clipPath: 'inset(0)',
+                    offset: 1,
                 },
             ], {
                 duration: prefersReducedMotion ? 480 : 1250,
