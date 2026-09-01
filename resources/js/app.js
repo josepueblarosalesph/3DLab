@@ -52,20 +52,23 @@ const setupScrollReveal = () => {
     }
 
     let previousScrollY = window.scrollY;
+    let scrollDirection = 'bottom';
     const observedElements = new WeakSet();
 
-    const observer = new IntersectionObserver((entries) => {
-        const scrollingDown = window.scrollY >= previousScrollY;
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        scrollDirection = currentScrollY >= previousScrollY ? 'bottom' : 'top';
+        previousScrollY = currentScrollY;
+    }, { passive: true });
 
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-            entry.target.dataset.revealFrom = scrollingDown ? 'bottom' : 'top';
+            entry.target.dataset.revealFrom = scrollDirection;
             entry.target.classList.toggle('is-revealed', entry.isIntersecting);
         });
-
-        previousScrollY = window.scrollY;
     }, {
-        threshold: 0.12,
-        rootMargin: '0px 0px -5% 0px',
+        threshold: 0.06,
+        rootMargin: '0px 0px -2% 0px',
     });
 
     const observeElements = (root = document) => {
@@ -79,7 +82,11 @@ const setupScrollReveal = () => {
             element.classList.add('scroll-reveal');
             element.style.setProperty('--reveal-delay', `${Math.min(index % 4, 3) * 55}ms`);
             observedElements.add(element);
-            observer.observe(element);
+
+            // Wait for the hidden state to be painted before checking visibility.
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => observer.observe(element));
+            });
         });
     };
 
