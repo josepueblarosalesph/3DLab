@@ -9,7 +9,7 @@
             <label><span>Tu rol *</span><select wire:model="role"><option value="">Selecciona una opción</option><option>Investigador/a</option><option>Empresa o startup</option><option>Equipo clínico</option><option>Académico/a</option><option>Estudiante</option></select>@error('role')<small>{{ $message }}</small>@enderror</label>
             <label class="full"><span>Área de colaboración *</span><select wire:model="area"><option value="">Selecciona una capacidad</option><option>Fabricación digital y prototipado</option><option>I+D para startups y empresas</option><option>Ingeniería y prototipado médico</option><option>Formación y workshops</option><option>Otra</option></select>@error('area')<small>{{ $message }}</small>@enderror</label>
             <label class="full"><span>Cuéntanos sobre el desafío *</span><textarea wire:model="message" rows="5" placeholder="Objetivo, contexto y etapa actual del proyecto..."></textarea>@error('message')<small>{{ $message }}</small>@enderror</label>
-            <button type="submit" wire:loading.attr="disabled"><span wire:loading.remove>Enviar requerimiento ↗</span><span wire:loading>Enviando...</span></button>
+            <button type="submit" wire:loading.attr="disabled"><span wire:loading.remove>Enviar requerimiento <span class="direction-icon" aria-hidden="true">↗</span></span><span wire:loading>Enviando...</span></button>
         </form>
     @endif
 </div>

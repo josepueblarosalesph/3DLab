@@ -27,14 +27,14 @@
             <a href="{{ route('home') }}#proyectos">Proyectos</a>
             <a href="{{ route('blog.index') }}">Actualidad</a>
         </nav>
-        <a href="{{ route('home') }}#contacto" class="nav-cta">Inicia un proyecto <span>↗</span></a>
+        <a href="{{ route('home') }}#contacto" class="nav-cta">Inicia un proyecto <span class="direction-icon" aria-hidden="true">↗</span></a>
         <button class="menu-toggle" @click="open = !open" :aria-expanded="open" aria-label="Abrir menú">Menú</button>
         <div class="mobile-nav" x-show="open" x-transition @click.outside="open = false">
             <a href="{{ route('home') }}#acerca">Nosotros</a>
             <a href="{{ route('home') }}#capacidades">Capacidades</a>
             <a href="{{ route('home') }}#proyectos">Proyectos</a>
             <a href="{{ route('blog.index') }}">Actualidad</a>
-            <a href="{{ route('home') }}#contacto">Inicia un proyecto ↗</a>
+            <a href="{{ route('home') }}#contacto">Inicia un proyecto <span class="direction-icon" aria-hidden="true">↗</span></a>
         </div>
     </header>
 
@@ -50,7 +50,7 @@
             <div><strong class="footer-brand"><img src="{{ asset('images/openlab-logo-white.png') }}" alt="Open Lab"></strong><p>{{ data_get($siteContent, 'footer.description') }}</p></div>
             <div><span>Contacto</span><a href="mailto:{{ data_get($siteContent, 'footer.email') }}">{{ data_get($siteContent, 'footer.email') }}</a><p>{{ data_get($siteContent, 'footer.location') }}</p></div>
             <div><span>Explora</span><a href="{{ route('blog.index') }}">Actualidad</a><a href="{{ route('login') }}">Acceso equipo</a></div>
-            <div><span>Síguenos</span><a href="{{ data_get($siteContent, 'footer.instagram_url') ?: '#' }}">Instagram ↗</a><a href="{{ data_get($siteContent, 'footer.linkedin_url') ?: '#' }}">LinkedIn ↗</a></div>
+            <div><span>Síguenos</span><a href="{{ data_get($siteContent, 'footer.instagram_url') ?: '#' }}">Instagram <span class="direction-icon" aria-hidden="true">↗</span></a><a href="{{ data_get($siteContent, 'footer.linkedin_url') ?: '#' }}">LinkedIn <span class="direction-icon" aria-hidden="true">↗</span></a></div>
         </div>
         <div class="footer-bottom"><span>© {{ date('Y') }} Open Lab</span><span>Academia × Industria × Salud</span></div>
     </footer>

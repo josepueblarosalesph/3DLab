@@ -5,7 +5,7 @@
             @foreach($posts as $post)
                 <a href="{{ route('blog.show', $post) }}" class="news-card">
                     <div class="news-image @if(!$post->cover_image) placeholder-{{ ($loop->iteration % 3) + 1 }} @endif" @if($post->cover_image) style="background-image:url('{{ $post->coverUrl() }}')" @endif></div>
-                    <span>{{ $post->category }} · {{ $post->published_at?->format('d.m.Y') }}</span><h3>{{ $post->title }}</h3><p>{{ $post->excerpt }}</p><i>Leer más ↗</i>
+                    <span>{{ $post->category }} · {{ $post->published_at?->format('d.m.Y') }}</span><h3>{{ $post->title }}</h3><p>{{ $post->excerpt }}</p><i>Leer más <span class="direction-icon" aria-hidden="true">↗</span></i>
                 </a>
             @endforeach
         </div>

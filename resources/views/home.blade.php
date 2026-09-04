@@ -9,7 +9,7 @@
         <div class="hero-copy">
             <h1>{!! nl2br(e(data_get($content, 'hero.title'))) !!}</h1>
             <p>{{ data_get($content, 'hero.description') }}</p>
-            <div class="hero-actions"><a href="#capacidades">{{ data_get($content, 'hero.primary_cta') }} ↓</a><a href="#contacto">{{ data_get($content, 'hero.secondary_cta') }} ↗</a></div>
+            <div class="hero-actions"><a href="#capacidades">{{ data_get($content, 'hero.primary_cta') }} <span class="direction-icon" aria-hidden="true">↓</span></a><a href="#contacto">{{ data_get($content, 'hero.secondary_cta') }} <span class="direction-icon" aria-hidden="true">↗</span></a></div>
         </div>
         <div class="hero-index"><span>OPEN / 01</span><span>{{ data_get($content, 'hero.strapline') }}</span></div>
     </section>
@@ -59,13 +59,13 @@
 
     <section class="section news-section">
         <div class="section-index"><span>05</span><span>Actualidad</span></div>
-        <div class="section-heading split"><h2>{!! nl2br(e(data_get($content, 'news.title'))) !!}</h2><a href="{{ route('blog.index') }}">Ver todas las publicaciones ↗</a></div>
+        <div class="section-heading split"><h2>{!! nl2br(e(data_get($content, 'news.title'))) !!}</h2><a href="{{ route('blog.index') }}">Ver todas las publicaciones <span class="direction-icon" aria-hidden="true">↗</span></a></div>
         <div class="news-grid">
             @forelse($posts as $post)
                 <a href="{{ route('blog.show', $post) }}" class="news-card">
                     <div class="news-image @if(!$post->cover_image) placeholder-{{ $loop->iteration }} @endif" @if($post->cover_image) style="background-image:url('{{ $post->coverUrl() }}')" @endif></div>
                     <span>{{ $post->category }} · {{ $post->published_at?->format('d.m.Y') }}</span>
-                    <h3>{{ $post->title }}</h3><p>{{ $post->excerpt }}</p><i>Leer más ↗</i>
+                    <h3>{{ $post->title }}</h3><p>{{ $post->excerpt }}</p><i>Leer más <span class="direction-icon" aria-hidden="true">↗</span></i>
                 </a>
             @empty
                 <article class="empty-news"><span>PRÓXIMAMENTE</span><h3>Nuevos proyectos, investigación y aprendizajes del laboratorio.</h3></article>
