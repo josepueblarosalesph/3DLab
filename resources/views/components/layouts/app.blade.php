@@ -19,7 +19,7 @@
 <body class="public-site">
     <header class="site-header" x-data="{ open: false }">
         <a href="{{ route('home') }}" class="brand" aria-label="Open Lab, inicio">
-            <img src="{{ asset('images/openlab-logo-color.png') }}" alt="Open Lab">
+            <img src="{{ asset('images/openlab-display-light-bg.png') }}" alt="Open Lab">
         </a>
         <nav class="desktop-nav" aria-label="Navegación principal">
             <a href="{{ route('home') }}#acerca">Nosotros</a>
@@ -47,12 +47,16 @@
             <a href="{{ route('home') }}#contacto" class="circle-link" aria-label="Ir a contacto">↗</a>
         </div>
         <div class="footer-grid">
-            <div><strong class="footer-brand"><img src="{{ asset('images/openlab-logo-white.png') }}" alt="Open Lab"></strong><p>{{ data_get($siteContent, 'footer.description') }}</p></div>
+            <div><strong class="footer-brand"><img src="{{ asset('images/openlab-display-dark-bg.png') }}" alt="Open Lab"></strong><p>{{ data_get($siteContent, 'footer.description') }}</p></div>
             <div><span>Contacto</span><a href="mailto:{{ data_get($siteContent, 'footer.email') }}">{{ data_get($siteContent, 'footer.email') }}</a><p>{{ data_get($siteContent, 'footer.location') }}</p></div>
             <div><span>Explora</span><a href="{{ route('blog.index') }}">Actualidad</a><a href="{{ route('login') }}">Acceso equipo</a></div>
             <div><span>Síguenos</span><a href="{{ data_get($siteContent, 'footer.instagram_url') ?: '#' }}">Instagram <span class="direction-icon" aria-hidden="true">↗</span></a><a href="{{ data_get($siteContent, 'footer.linkedin_url') ?: '#' }}">LinkedIn <span class="direction-icon" aria-hidden="true">↗</span></a></div>
         </div>
         <div class="footer-bottom"><span>© {{ date('Y') }} Open Lab</span><span>Academia × Industria × Salud</span></div>
+        <div class="university-band" aria-label="Pertenencia institucional">
+            <span>Somos parte de la Universidad de los Andes</span>
+            <img src="{{ asset('images/uandes-logo-white.svg') }}" alt="UANDES" width="180" height="36" loading="lazy">
+        </div>
     </footer>
     @livewireScripts
 </body>

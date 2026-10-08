@@ -9,14 +9,14 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
-<body class="min-h-screen bg-[#f3f3ef] text-[#161616] font-sans">
+<body class="min-h-screen bg-[#ffffff] text-[#142030] font-sans">
     <x-nav sticky class="border-b border-black/10 bg-white lg:hidden">
-        <x-slot:brand><img src="{{ asset('images/openlab-logo-color.png') }}" class="h-7 w-auto" alt="Open Lab"></x-slot:brand>
+        <x-slot:brand><img src="{{ asset('images/openlab-display-light-bg.png') }}" class="h-7 w-auto" alt="Open Lab"></x-slot:brand>
         <x-slot:actions><label for="admin-drawer"><x-icon name="o-bars-3" class="cursor-pointer" /></label></x-slot:actions>
     </x-nav>
     <x-main full-width>
-        <x-slot:sidebar drawer="admin-drawer" collapsible class="admin-sidebar bg-[#161616] text-white border-r-0">
-            <div class="p-5 mb-4"><a href="{{ route('admin.dashboard') }}"><img src="{{ asset('images/openlab-logo-white.png') }}" class="w-36 h-auto" alt="Open Lab"></a><p class="text-xs text-white/45 mt-3">Gestión de contenidos</p></div>
+        <x-slot:sidebar drawer="admin-drawer" collapsible class="admin-sidebar bg-[#142030] text-white border-r-0">
+            <div class="p-5 mb-4"><a href="{{ route('admin.dashboard') }}"><img src="{{ asset('images/openlab-display-dark-bg.png') }}" class="w-36 h-auto" alt="Open Lab"></a><p class="text-xs text-white/45 mt-3">Gestión de contenidos</p></div>
             <x-menu activate-by-route>
                 <x-menu-item title="Resumen" icon="o-squares-2x2" :link="route('admin.dashboard')" />
                 <x-menu-item title="Editar sitio" icon="o-paint-brush" :link="route('admin.site.edit')" />

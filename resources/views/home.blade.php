@@ -1,10 +1,5 @@
 <x-public-layout :site-content="$content">
     <section class="hero">
-        <div class="hero-art @if(data_get($content, 'hero.image')) has-custom-image @endif" @if(data_get($content, 'hero.image')) style="background-image:url('{{ asset('storage/'.data_get($content, 'hero.image')) }}')" @endif aria-hidden="true"></div>
-        <div class="hero-grid" aria-hidden="true"></div>
-        <div class="hero-scan" aria-hidden="true"></div>
-        <div class="hero-coordinates" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-        <div class="hero-overlay"></div>
         <div class="hero-topline"><span>{{ data_get($content, 'hero.eyebrow') }}</span><span>33.4° S · 70.6° W</span></div>
         <div class="hero-copy">
             <h1>{!! nl2br(e(data_get($content, 'hero.title'))) !!}</h1>
@@ -34,9 +29,14 @@
             <h2>{!! nl2br(e(data_get($content, 'capabilities.title'))) !!}</h2>
             <p>{{ data_get($content, 'capabilities.description') }}</p>
         </div>
-        <div class="capability-list">
+        <div class="capability-list" x-data="{ selected: null }">
             @foreach(data_get($content, 'capabilities.items', []) as $index => $item)
-                <article @class(['featured' => $index === 2])><span class="cap-number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span><div>@if($index === 2)<span class="focus-label">Foco estratégico</span>@endif<h3>{{ data_get($item, 'title') }}</h3><p>{{ data_get($item, 'description') }}</p><span class="cap-tags">{{ data_get($item, 'tags') }}</span></div><span class="cap-arrow">↗</span></article>
+                <article @class(['featured' => $index === 2]) role="button" tabindex="0"
+                    aria-labelledby="capability-title-{{ $index }}"
+                    :aria-pressed="selected === {{ $index }}"
+                    @click="selected = {{ $index }}"
+                    @keydown.enter.prevent="selected = {{ $index }}"
+                    @keydown.space.prevent="selected = {{ $index }}"><span class="cap-number">{{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</span><div>@if($index === 2)<span class="focus-label">Foco estratégico</span>@endif<h3 id="capability-title-{{ $index }}">{{ data_get($item, 'title') }}</h3><p>{{ data_get($item, 'description') }}</p><span class="cap-tags">{{ data_get($item, 'tags') }}</span></div><span class="cap-arrow">↗</span></article>
             @endforeach
         </div>
     </section>
