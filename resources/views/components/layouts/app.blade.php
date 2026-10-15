@@ -6,10 +6,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $title ?? 'Open Lab — Innovación, tecnología y prototipado' }}</title>
-    <meta name="description" content="Open Lab conecta academia, investigación e industria para diseñar, prototipar y escalar soluciones tecnológicas con impacto real.">
-    <meta property="og:title" content="Open Lab — Prototipamos el futuro">
-    <meta property="og:description" content="Hub de innovación tecnológica, fabricación digital e I+D.">
+    <title>{{ $title ?? 'Open Lab — Fabricación digital e innovación' }}</title>
+    <meta name="description" content="{{ data_get($siteContent, 'hero.description') }}">
+    <meta property="og:title" content="Open Lab — {{ str_replace("\n", " ", data_get($siteContent, 'hero.title')) }}">
+    <meta property="og:description" content="{{ data_get($siteContent, 'hero.description') }}">
     <meta property="og:image" content="{{ asset('og.png') }}">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="{{ asset('og.png') }}">
@@ -25,7 +25,7 @@
             <a href="{{ route('home') }}#acerca">Nosotros</a>
             <a href="{{ route('home') }}#capacidades">Capacidades</a>
             <a href="{{ route('home') }}#proyectos">Proyectos</a>
-            <a href="{{ route('blog.index') }}">Actualidad</a>
+            @if(data_get($siteContent, 'news.enabled', false))<a href="{{ route('blog.index') }}">Novedades</a>@endif
         </nav>
         <a href="{{ route('home') }}#contacto" class="nav-cta">Inicia un proyecto <span class="direction-icon" aria-hidden="true">↗</span></a>
         <button class="menu-toggle" @click="open = !open" :aria-expanded="open" aria-label="Abrir menú">Menú</button>
@@ -33,7 +33,7 @@
             <a href="{{ route('home') }}#acerca">Nosotros</a>
             <a href="{{ route('home') }}#capacidades">Capacidades</a>
             <a href="{{ route('home') }}#proyectos">Proyectos</a>
-            <a href="{{ route('blog.index') }}">Actualidad</a>
+            @if(data_get($siteContent, 'news.enabled', false))<a href="{{ route('blog.index') }}">Novedades</a>@endif
             <a href="{{ route('home') }}#contacto">Inicia un proyecto <span class="direction-icon" aria-hidden="true">↗</span></a>
         </div>
     </header>
@@ -49,10 +49,10 @@
         <div class="footer-grid">
             <div><strong class="footer-brand"><img src="{{ asset('images/openlab-display-dark-bg.png') }}" alt="Open Lab"></strong><p>{{ data_get($siteContent, 'footer.description') }}</p></div>
             <div><span>Contacto</span><a href="mailto:{{ data_get($siteContent, 'footer.email') }}">{{ data_get($siteContent, 'footer.email') }}</a><p>{{ data_get($siteContent, 'footer.location') }}</p></div>
-            <div><span>Explora</span><a href="{{ route('blog.index') }}">Actualidad</a><a href="{{ route('login') }}">Acceso equipo</a></div>
+            <div><span>Explora</span>@if(data_get($siteContent, 'news.enabled', false))<a href="{{ route('blog.index') }}">Novedades</a>@endif<a href="{{ route('login') }}">Acceso equipo</a></div>
             <div><span>Síguenos</span><a href="{{ data_get($siteContent, 'footer.instagram_url') ?: '#' }}">Instagram <span class="direction-icon" aria-hidden="true">↗</span></a><a href="{{ data_get($siteContent, 'footer.linkedin_url') ?: '#' }}">LinkedIn <span class="direction-icon" aria-hidden="true">↗</span></a></div>
         </div>
-        <div class="footer-bottom"><span>© {{ date('Y') }} Open Lab</span><span>Academia × Industria × Salud</span></div>
+        <div class="footer-bottom"><span>© {{ date('Y') }} Open Lab</span><span>Academia × Industria × Comunidad</span></div>
         <div class="university-band" aria-label="Pertenencia institucional">
             <span>Somos parte de la Universidad de los Andes</span>
             <img src="{{ asset('images/uandes-logo-white.svg') }}" alt="UANDES" width="180" height="36" loading="lazy">

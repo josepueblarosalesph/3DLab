@@ -23,7 +23,11 @@ class ExampleTest extends TestCase
         $response = $this->get('/');
 
         $response->assertStatus(200);
-        $response->assertSee('Prototipamos');
+        $response->assertSee('Transformamos');
+        $response->assertSee('Capacitación y acompañamiento');
+        $response->assertSee('Cell4cells');
+        $response->assertDontSee('Foco estratégico');
+        $response->assertDontSee('news-section');
     }
 
     public function test_admin_requires_authentication(): void

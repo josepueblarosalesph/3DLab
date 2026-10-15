@@ -118,7 +118,8 @@
                     <h3 class="editor-subtitle">Red de excelencia</h3>
                     <label class="editor-field"><span>Título</span><textarea wire:model.live.debounce.350ms="content.network.title" rows="3"></textarea></label>
                     <label class="editor-field"><span>Descripción</span><textarea wire:model.live.debounce.350ms="content.network.description" rows="3"></textarea></label>
-                    <h3 class="editor-subtitle">Actualidad</h3>
+                    <h3 class="editor-subtitle">Novedades</h3>
+                    <label><input type="checkbox" wire:model.live="content.news.enabled"> Mostrar novedades en el sitio</label>
                     <label class="editor-field"><span>Título</span><textarea wire:model.live.debounce.350ms="content.news.title" rows="2"></textarea></label>
                     <h3 class="editor-subtitle">Contacto</h3>
                     <label class="editor-field"><span>Etiqueta</span><input wire:model.live.debounce.350ms="content.contact.eyebrow"></label>
