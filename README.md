@@ -1,6 +1,6 @@
 # Open Lab
 
-Sitio corporativo y plataforma editorial para Open Lab, un hub de innovación tecnológica, fabricación digital e I+D.
+Sitio corporativo y plataforma editorial para Open Lab, un lab de innovación tecnológica, fabricación digital e I+D.
 
 ## Stack
 

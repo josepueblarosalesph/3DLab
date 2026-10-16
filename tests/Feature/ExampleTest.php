@@ -27,7 +27,9 @@ class ExampleTest extends TestCase
         $response->assertSee('Capacitación y acompañamiento');
         $response->assertSee('Cell4cells');
         $response->assertDontSee('Foco estratégico');
-        $response->assertDontSee('news-section');
+        $response->assertSee('news-section');
+        $response->assertSee('en movimiento.');
+        $response->assertSee('Ver todas las publicaciones');
     }
 
     public function test_admin_requires_authentication(): void

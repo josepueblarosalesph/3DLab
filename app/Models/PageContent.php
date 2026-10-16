@@ -67,7 +67,7 @@ class PageContent extends Model
                 'title' => 'Nuestra misión es hacer que las ideas puedan pasar del concepto a la realidad',
                 'description' => 'Academia × Industria × Comunidad',
             ],
-            'news' => ['title' => 'Novedades', 'enabled' => false],
+            'news' => ['title' => "Investigación\nen movimiento.", 'enabled' => true],
             'contact' => [
                 'eyebrow' => 'Contacto',
                 'title' => "¿Tienes una idea?\nHablemos.",
