@@ -22,7 +22,7 @@
             <img src="{{ asset('images/openlab-display-light-bg.png') }}" alt="Open Lab">
         </a>
         <nav class="desktop-nav" aria-label="Navegación principal">
-            <a href="{{ route('home') }}#acerca">Nosotros</a>
+            <a href="{{ route('about') }}" @if(request()->routeIs('about')) aria-current="page" @endif>Quiénes somos</a>
             <a href="{{ route('home') }}#capacidades">Capacidades</a>
             <a href="{{ route('home') }}#proyectos">Proyectos</a>
             @if(data_get($siteContent, 'news.enabled', false))<a href="{{ route('blog.index') }}">Novedades</a>@endif
@@ -30,7 +30,7 @@
         <a href="{{ route('home') }}#contacto" class="nav-cta">Inicia un proyecto <span class="direction-icon" aria-hidden="true">↗</span></a>
         <button class="menu-toggle" @click="open = !open" :aria-expanded="open" aria-label="Abrir menú">Menú</button>
         <div class="mobile-nav" x-show="open" x-transition @click.outside="open = false">
-            <a href="{{ route('home') }}#acerca">Nosotros</a>
+            <a href="{{ route('about') }}" @if(request()->routeIs('about')) aria-current="page" @endif>Quiénes somos</a>
             <a href="{{ route('home') }}#capacidades">Capacidades</a>
             <a href="{{ route('home') }}#proyectos">Proyectos</a>
             @if(data_get($siteContent, 'news.enabled', false))<a href="{{ route('blog.index') }}">Novedades</a>@endif
@@ -49,7 +49,7 @@
         <div class="footer-grid">
             <div><strong class="footer-brand"><img src="{{ asset('images/openlab-display-dark-bg.png') }}" alt="Open Lab"></strong><p>{{ data_get($siteContent, 'footer.description') }}</p></div>
             <div><span>Contacto</span><a href="mailto:{{ data_get($siteContent, 'footer.email') }}">{{ data_get($siteContent, 'footer.email') }}</a><p>{{ data_get($siteContent, 'footer.location') }}</p></div>
-            <div><span>Explora</span>@if(data_get($siteContent, 'news.enabled', false))<a href="{{ route('blog.index') }}">Novedades</a>@endif<a href="{{ route('login') }}">Acceso equipo</a></div>
+            <div><span>Explora</span><a href="{{ route('about') }}">Quiénes somos</a>@if(data_get($siteContent, 'news.enabled', false))<a href="{{ route('blog.index') }}">Novedades</a>@endif<a href="{{ route('login') }}">Acceso equipo</a></div>
             <div><span>Síguenos</span><a href="{{ data_get($siteContent, 'footer.instagram_url') ?: '#' }}">Instagram <span class="direction-icon" aria-hidden="true">↗</span></a><a href="{{ data_get($siteContent, 'footer.linkedin_url') ?: '#' }}">LinkedIn <span class="direction-icon" aria-hidden="true">↗</span></a></div>
         </div>
         <div class="footer-bottom"><span>© {{ date('Y') }} Open Lab</span><span>Academia × Industria × Comunidad</span></div>

@@ -8,6 +8,11 @@ use Illuminate\View\View;
 
 class HomeController extends Controller
 {
+    public function about(): View
+    {
+        return view('about', ['content' => PageContent::home()->content]);
+    }
+
     public function index(): View
     {
         $posts = Post::published()->latest('published_at')->take(3)->get();

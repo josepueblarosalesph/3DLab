@@ -54,6 +54,17 @@ class PageContent extends Model
                     ['title' => 'Capacitación y acompañamiento', 'description' => 'Compartimos conocimientos y herramientas para que estudiantes, equipos de trabajo y organizaciones puedan desarrollar sus propias capacidades de fabricación digital.', 'tags' => ''],
                 ],
             ],
+            'equipment' => [
+                'title' => 'Equipamiento y espacio',
+                'description' => 'Nuestra infraestructura combina distintas tecnologías de fabricación digital con herramientas y áreas de trabajo que permiten abordar proyectos de diferentes escalas y niveles de complejidad.',
+                'items' => [
+                    ['title' => 'Fabricación aditiva', 'description' => 'Impresión 3D FDM'],
+                    ['title' => 'Corte y grabado', 'description' => 'Tecnologías para cortar, marcar y trabajar materiales de diferentes formatos.'],
+                    ['title' => 'Diseño y modelación digital', 'description' => 'Herramientas de diseño y modelación que permiten desarrollar y preparar proyectos para su fabricación.'],
+                    ['title' => 'Instrumentación y herramientas', 'description' => 'Equipamiento complementario para ensamblar, ajustar, medir y trabajar los proyectos durante sus distintas etapas.'],
+                ],
+                'invitation' => 'Cuéntanos brevemente qué quieres desarrollar y, si ya lo tienes definido, comparte información como dimensiones, materiales, cantidades, archivos o referencias. Nuestro equipo revisará tu solicitud y te orientará sobre las posibilidades de desarrollo.',
+            ],
             'projects' => [
                 'title' => 'Proyectos',
                 'description' => 'Cada proyecto que desarrollamos es una oportunidad para explorar nuevas ideas, tecnologías y formas de resolver problemas. Desde prototipos funcionales y piezas personalizadas hasta desarrollos experimentales, cada proyecto refleja una combinación particular de diseño, fabricación, tecnología y colaboración.',

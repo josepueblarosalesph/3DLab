@@ -11,6 +11,7 @@ use App\Livewire\Admin\PostIndex;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/quienes-somos', [HomeController::class, 'about'])->name('about');
 Route::get('/actualidad', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/actualidad/{post:slug}', [BlogController::class, 'show'])->name('blog.show');
 

@@ -14,7 +14,10 @@
         <div class="intro-main">
             <span class="eyebrow">{{ data_get($content, 'intro.eyebrow') }}</span>
             <h2>{{ data_get($content, 'intro.title') }}</h2>
-            <p>{{ data_get($content, 'intro.description') }}</p>
+            <div class="intro-summary">
+                <p>{{ data_get($content, 'intro.description') }}</p>
+                <a class="about-cta" href="{{ route('about') }}">Conoce quiénes somos <span aria-hidden="true">↗</span></a>
+            </div>
         </div>
         @if(data_get($content, 'intro.stats'))
         <div class="impact-grid">
@@ -43,8 +46,29 @@
         </div>
     </section>
 
+    <section id="equipamiento" class="section equipment-section" aria-labelledby="equipment-title">
+        <div class="section-index"><span>03</span><span>Infraestructura</span></div>
+        <div class="section-heading split">
+            <h2 id="equipment-title">{{ data_get($content, 'equipment.title') }}</h2>
+            <p>{{ data_get($content, 'equipment.description') }}</p>
+        </div>
+        <div class="equipment-grid">
+            @foreach(data_get($content, 'equipment.items', []) as $item)
+                <article class="equipment-card">
+                    <span class="equipment-number">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
+                    <h3>{{ data_get($item, 'title') }}</h3>
+                    <p>{{ data_get($item, 'description') }}</p>
+                </article>
+            @endforeach
+        </div>
+        <div class="equipment-invitation">
+            <p>{{ data_get($content, 'equipment.invitation') }}</p>
+            <a href="#contacto">Cuéntanos tu proyecto <span class="direction-icon" aria-hidden="true">↗</span></a>
+        </div>
+    </section>
+
     <section id="proyectos" class="projects-section">
-        <div class="section-index light"><span>03</span><span>Casos seleccionados</span></div>
+        <div class="section-index light"><span>04</span><span>Casos seleccionados</span></div>
         <div class="project-intro"><h2>{!! nl2br(e(data_get($content, 'projects.title'))) !!}</h2><p>{{ data_get($content, 'projects.description') }}</p></div>
         <div class="project-grid">
             @foreach(data_get($content, 'projects.items', []) as $index => $project)
@@ -54,14 +78,14 @@
     </section>
 
     <section class="section network-section">
-        <div class="section-index"><span>04</span><span>Nuestra misión</span></div>
+        <div class="section-index"><span>05</span><span>Nuestra misión</span></div>
         <div class="network-copy"><h2>{{ data_get($content, 'network.title') }}</h2><p>{{ data_get($content, 'network.description') }}</p></div>
         <div class="network-lines"><span>ACADEMIA</span><i>×</i><span>INDUSTRIA</span><i>×</i><span>COMUNIDAD</span><i>=</i><strong>OPEN LAB</strong></div>
     </section>
 
     @if(data_get($content, 'news.enabled', false))
     <section class="section news-section">
-        <div class="section-index"><span>05</span><span>Actualidad</span></div>
+        <div class="section-index"><span>06</span><span>Actualidad</span></div>
         <div class="section-heading split"><h2>{!! nl2br(e(data_get($content, 'news.title'))) !!}</h2><a href="{{ route('blog.index') }}">Ver todas las publicaciones <span class="direction-icon" aria-hidden="true">↗</span></a></div>
         <div class="news-grid">
             @forelse($posts as $post)

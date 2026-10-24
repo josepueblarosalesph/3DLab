@@ -85,8 +85,23 @@
                 </div>
             </details>
 
+            <details class="editor-section" wire:key="editor-section-equipment" wire:ignore.self>
+                <summary><span><i>04</i>Equipamiento y espacio</span><small>Infraestructura del laboratorio</small></summary>
+                <div class="editor-section-body">
+                    <label class="editor-field"><span>Título</span><input wire:model.live.debounce.350ms="content.equipment.title" maxlength="200"></label>
+                    <label class="editor-field"><span>Descripción</span><textarea wire:model.live.debounce.350ms="content.equipment.description" rows="4" maxlength="500"></textarea></label>
+                    @foreach(data_get($content, 'equipment.items', []) as $index => $item)
+                        <div class="editor-card" wire:key="equipment-{{ $index }}">
+                            <label class="editor-field"><span>Nombre</span><input wire:model.live.debounce.350ms="content.equipment.items.{{ $index }}.title" maxlength="120"></label>
+                            <label class="editor-field"><span>Descripción</span><textarea wire:model.live.debounce.350ms="content.equipment.items.{{ $index }}.description" rows="3" maxlength="360"></textarea></label>
+                        </div>
+                    @endforeach
+                    <label class="editor-field"><span>Invitación a desarrollar un proyecto</span><textarea wire:model.live.debounce.350ms="content.equipment.invitation" rows="4" maxlength="500"></textarea></label>
+                </div>
+            </details>
+
             <details class="editor-section" wire:key="editor-section-projects" wire:ignore.self>
-                <summary><span><i>04</i>Proyectos</span><small>Casos e imágenes destacadas</small></summary>
+                <summary><span><i>05</i>Proyectos</span><small>Casos e imágenes destacadas</small></summary>
                 <div class="editor-section-body">
                     <label class="editor-field"><span>Título</span><textarea wire:model.live.debounce.350ms="content.projects.title" rows="3"></textarea></label>
                     <label class="editor-field"><span>Descripción</span><textarea wire:model.live.debounce.350ms="content.projects.description" rows="3"></textarea></label>
@@ -113,7 +128,7 @@
             </details>
 
             <details class="editor-section" wire:key="editor-section-other" wire:ignore.self>
-                <summary><span><i>05</i>Otros bloques</span><small>Red, actualidad y contacto</small></summary>
+                <summary><span><i>06</i>Otros bloques</span><small>Red, actualidad y contacto</small></summary>
                 <div class="editor-section-body">
                     <h3 class="editor-subtitle">Red de excelencia</h3>
                     <label class="editor-field"><span>Título</span><textarea wire:model.live.debounce.350ms="content.network.title" rows="3"></textarea></label>
@@ -129,7 +144,7 @@
             </details>
 
             <details class="editor-section" wire:key="editor-section-footer" wire:ignore.self>
-                <summary><span><i>06</i>Pie de página</span><small>Mensaje y datos de contacto</small></summary>
+                <summary><span><i>07</i>Pie de página</span><small>Mensaje y datos de contacto</small></summary>
                 <div class="editor-section-body">
                     <label class="editor-field"><span>Etiqueta</span><input wire:model.live.debounce.350ms="content.footer.eyebrow"></label>
                     <label class="editor-field"><span>Título</span><textarea wire:model.live.debounce.350ms="content.footer.title" rows="3"></textarea></label>
@@ -162,6 +177,7 @@
                     </div>
                     <div class="preview-intro"><small>{{ data_get($content, 'intro.eyebrow') }}</small><h3>{{ data_get($content, 'intro.title') }}</h3><p>{{ data_get($content, 'intro.description') }}</p></div>
                     <div class="preview-capabilities"><small>CAPACIDADES</small><h3>{!! nl2br(e(data_get($content, 'capabilities.title'))) !!}</h3>@foreach(data_get($content, 'capabilities.items', []) as $index => $item)<div><i>0{{ $index + 1 }}</i><b>{{ data_get($item, 'title') }}</b><span>↗</span></div>@endforeach</div>
+                    <div class="preview-intro"><small>INFRAESTRUCTURA</small><h3>{{ data_get($content, 'equipment.title') }}</h3><p>{{ data_get($content, 'equipment.description') }}</p>@foreach(data_get($content, 'equipment.items', []) as $item)<h4>{{ data_get($item, 'title') }}</h4><p>{{ data_get($item, 'description') }}</p>@endforeach<p>{{ data_get($content, 'equipment.invitation') }}</p></div>
                     <div class="preview-projects"><small>CASOS SELECCIONADOS</small><h3>{!! nl2br(e(data_get($content, 'projects.title'))) !!}</h3><div>@foreach(data_get($content, 'projects.items', []) as $index => $project)<article @if(($projectImages[$index] ?? null) || data_get($project, 'image')) style="background-image:linear-gradient(0deg,rgba(0,0,0,.75),transparent),url('{{ ($projectImages[$index] ?? null)?->temporaryUrl() ?? asset('storage/'.data_get($project, 'image')) }}')" @endif><span>{{ data_get($project, 'category') }}</span><b>{{ data_get($project, 'title') }}</b></article>@endforeach</div></div>
                     <div class="preview-contact"><small>{{ data_get($content, 'contact.eyebrow') }}</small><h3>{!! nl2br(e(data_get($content, 'contact.title'))) !!}</h3></div>
                 </div>
