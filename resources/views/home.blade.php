@@ -1,5 +1,9 @@
 <x-public-layout :site-content="$content">
-    <section class="hero">
+    <section class="hero hero-with-video">
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="{{ asset('videos/openlab-hero-poster.jpg') }}" aria-hidden="true" tabindex="-1">
+            <source src="{{ asset('videos/openlab-hero.mp4') }}" type="video/mp4">
+        </video>
+        <div class="hero-video-overlay" aria-hidden="true"></div>
         <div class="hero-topline"><span>{{ data_get($content, 'hero.eyebrow') }}</span><span>33.4° S · 70.6° W</span></div>
         <div class="hero-copy">
             <h1>{!! nl2br(e(data_get($content, 'hero.title'))) !!}</h1>
