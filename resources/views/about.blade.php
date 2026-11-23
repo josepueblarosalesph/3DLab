@@ -1,5 +1,7 @@
 <x-public-layout title="Quiénes somos — Open Lab" :site-content="$content">
-    <section class="page-hero about-hero">
+    <section class="page-hero about-hero about-hero-with-image">
+        <img class="about-hero-background" src="{{ \App\Support\Media::url(data_get($content, 'intro.image') ?: 'page-content/nosotros-comunidad.webp') }}" alt="" aria-hidden="true">
+        <div class="about-hero-shade" aria-hidden="true"></div>
         <span class="eyebrow">Open Lab · Universidad de los Andes</span>
         <h1>Quiénes somos.</h1>
         <p>{{ data_get($content, 'hero.description') }}</p>
