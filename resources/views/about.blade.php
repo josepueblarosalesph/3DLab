@@ -73,7 +73,7 @@
         <span class="eyebrow">Trabajemos juntos</span>
         <div class="section-heading split">
             <h2>Tu idea también<br>tiene un lugar aquí.</h2>
-            <div><p>{{ data_get($content, 'equipment.invitation') }}</p><a class="about-cta" href="{{ route('home') }}#contacto">Conversemos sobre tu proyecto <span aria-hidden="true">↗</span></a></div>
+            <div><p>{{ data_get($content, 'equipment.invitation') }}</p><a class="about-cta" href="{{ route('home') }}#contacto">Conversemos sobre tu proyecto</a></div>
         </div>
     </section>
 </x-public-layout>

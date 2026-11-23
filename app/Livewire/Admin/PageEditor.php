@@ -15,6 +15,8 @@ class PageEditor extends Component
 
     public $heroImage;
 
+    public $introImage;
+
     public array $projectImages = [];
 
     public array $removedImages = [];
@@ -26,7 +28,7 @@ class PageEditor extends Component
 
     public function removeImage(string $path): void
     {
-        if (! in_array($path, ['hero.image', 'projects.items.0.image', 'projects.items.1.image', 'projects.items.2.image'], true)) {
+        if (! in_array($path, array_merge(['hero.image', 'intro.image'], array_map(fn ($index) => "projects.items.{$index}.image", array_keys($this->content['projects']['items'] ?? []))), true)) {
             return;
         }
 
@@ -40,6 +42,8 @@ class PageEditor extends Component
 
         if ($path === 'hero.image') {
             $this->reset('heroImage');
+        } elseif ($path === 'intro.image') {
+            $this->reset('introImage');
         } else {
             unset($this->projectImages[(int) str($path)->between('items.', '.image')->toString()]);
         }
@@ -47,7 +51,7 @@ class PageEditor extends Component
 
     public function restoreDefaults(): void
     {
-        foreach (['hero.image', 'projects.items.0.image', 'projects.items.1.image', 'projects.items.2.image'] as $path) {
+        foreach (array_merge(['hero.image', 'intro.image'], array_map(fn ($index) => "projects.items.{$index}.image", array_keys($this->content['projects']['items'] ?? []))) as $path) {
             $image = data_get($this->content, $path);
             if ($image) {
                 $this->removedImages[] = $image;
@@ -55,7 +59,7 @@ class PageEditor extends Component
         }
 
         $this->content = PageContent::defaults();
-        $this->reset('heroImage', 'projectImages');
+        $this->reset('heroImage', 'introImage', 'projectImages');
     }
 
     public function save(): void
@@ -87,7 +91,7 @@ class PageEditor extends Component
             'content.projects.items.*.category' => ['nullable', 'string', 'max:50'],
             'content.projects.items.*.year' => ['nullable', 'string', 'max:10'],
             'content.projects.items.*.title' => ['required', 'string', 'max:160'],
-            'content.projects.items.*.description' => ['nullable', 'string', 'max:300'],
+            'content.projects.items.*.description' => ['nullable', 'string', 'max:2000'],
             'content.network.title' => ['required', 'string', 'max:300'],
             'content.network.description' => ['required', 'string', 'max:500'],
             'content.news.enabled' => ['boolean'],
@@ -103,11 +107,17 @@ class PageEditor extends Component
             'content.footer.instagram_url' => ['nullable', 'string', 'max:500'],
             'content.footer.linkedin_url' => ['nullable', 'string', 'max:500'],
             'heroImage' => ['nullable', 'image', 'max:8192'],
+            'introImage' => ['nullable', 'image', 'max:8192'],
             'projectImages.*' => ['nullable', 'image', 'max:8192'],
         ], [], [
             'heroImage' => 'imagen de portada',
             'projectImages.*' => 'imagen de proyecto',
         ]);
+
+        if ($this->introImage) {
+            $this->queueExistingImage('intro.image');
+            data_set($this->content, 'intro.image', $this->introImage->store('page-content', 'public'));
+        }
 
         if ($this->heroImage) {
             $this->queueExistingImage('hero.image');
@@ -131,7 +141,7 @@ class PageEditor extends Component
             }
         }
 
-        $this->reset('heroImage', 'projectImages', 'removedImages');
+        $this->reset('heroImage', 'introImage', 'projectImages', 'removedImages');
         $this->dispatch('content-saved');
         session()->flash('success', 'Los cambios ya están publicados en el sitio.');
     }

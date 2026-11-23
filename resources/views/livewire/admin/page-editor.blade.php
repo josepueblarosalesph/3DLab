@@ -56,6 +56,10 @@
                     <label class="editor-field"><span>Etiqueta</span><input wire:model.live.debounce.350ms="content.intro.eyebrow"></label>
                     <label class="editor-field"><span>Título</span><textarea wire:model.live.debounce.350ms="content.intro.title" rows="4"></textarea></label>
                     <label class="editor-field"><span>Descripción</span><textarea wire:model.live.debounce.350ms="content.intro.description" rows="4"></textarea></label>
+                    <h3 class="editor-subtitle">Imagen de Nosotros</h3>
+                    <img src="{{ $introImage ? $introImage->temporaryUrl() : (data_get($content, 'intro.image') ? asset('storage/'.data_get($content, 'intro.image')) : asset('videos/openlab-infraestructura-poster.jpg')) }}" alt="Vista previa de Nosotros" class="w-64 aspect-video object-cover">
+                    <x-file wire:model="introImage" accept="image/png,image/jpeg,image/webp" hint="Máximo 8 MB." />
+                    @if($introImage || data_get($content, 'intro.image'))<button type="button" wire:click="removeImage('intro.image')" class="editor-remove">Usar imagen original</button>@endif
                     <h3 class="editor-subtitle">Indicadores</h3>
                     @foreach(data_get($content, 'intro.stats', []) as $index => $stat)
                         <div class="editor-repeat" wire:key="stat-{{ $index }}">
@@ -105,25 +109,8 @@
                 <div class="editor-section-body">
                     <label class="editor-field"><span>Título</span><textarea wire:model.live.debounce.350ms="content.projects.title" rows="3"></textarea></label>
                     <label class="editor-field"><span>Descripción</span><textarea wire:model.live.debounce.350ms="content.projects.description" rows="3"></textarea></label>
-                    @foreach(data_get($content, 'projects.items', []) as $index => $project)
-                        <div class="editor-card" wire:key="project-{{ $index }}">
-                            <h3>Proyecto {{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}</h3>
-                            <div class="editor-field-grid">
-                                <label class="editor-field"><span>Categoría</span><input wire:model.live.debounce.350ms="content.projects.items.{{ $index }}.category"></label>
-                                <label class="editor-field"><span>Año</span><input wire:model.live.debounce.350ms="content.projects.items.{{ $index }}.year"></label>
-                            </div>
-                            <label class="editor-field"><span>Título</span><input wire:model.live.debounce.350ms="content.projects.items.{{ $index }}.title"></label>
-                            <label class="editor-field"><span>Descripción</span><textarea wire:model.live.debounce.350ms="content.projects.items.{{ $index }}.description" rows="2"></textarea></label>
-                            @php($projectImage = $projectImages[$index] ?? null)
-                            @php($projectPreview = $projectImage ? $projectImage->temporaryUrl() : (data_get($content, "projects.items.$index.image") ? asset('storage/'.data_get($content, "projects.items.$index.image")) : null))
-                            @if($projectPreview)<img src="{{ $projectPreview }}" class="editor-project-image" alt="Vista previa del proyecto {{ $index + 1 }}">@endif
-                            <x-file wire:model="projectImages.{{ $index }}" accept="image/png,image/jpeg,image/webp" />
-                            <div wire:loading wire:target="projectImages.{{ $index }}" class="editor-uploading">Procesando imagen…</div>
-                            @if($projectImage || data_get($content, "projects.items.$index.image"))
-                                <button type="button" wire:click="removeImage('projects.items.{{ $index }}.image')" class="editor-remove">Quitar imagen</button>
-                            @endif
-                        </div>
-                    @endforeach
+                    <p>Las fichas, imágenes y galerías se administran en la sección Proyectos.</p>
+                    <a href="{{ route('admin.projects.index') }}" class="back-link">Administrar proyectos →</a>
                 </div>
             </details>
 
@@ -173,12 +160,12 @@
                         <span>{{ data_get($content, 'hero.eyebrow') }}</span>
                         <h2>{!! nl2br(e(data_get($content, 'hero.title'))) !!}</h2>
                         <p>{{ data_get($content, 'hero.description') }}</p>
-                        <button>{{ data_get($content, 'hero.secondary_cta') }} ↗</button>
+                        <button>{{ data_get($content, 'hero.secondary_cta') }}</button>
                     </div>
                     <div class="preview-intro"><small>{{ data_get($content, 'intro.eyebrow') }}</small><h3>{{ data_get($content, 'intro.title') }}</h3><p>{{ data_get($content, 'intro.description') }}</p></div>
-                    <div class="preview-capabilities"><small>CAPACIDADES</small><h3>{!! nl2br(e(data_get($content, 'capabilities.title'))) !!}</h3>@foreach(data_get($content, 'capabilities.items', []) as $index => $item)<div><i>0{{ $index + 1 }}</i><b>{{ data_get($item, 'title') }}</b><span>↗</span></div>@endforeach</div>
+                    <div class="preview-capabilities"><small>CAPACIDADES</small><h3>{!! nl2br(e(data_get($content, 'capabilities.title'))) !!}</h3>@foreach(data_get($content, 'capabilities.items', []) as $index => $item)<div><i>0{{ $index + 1 }}</i><b>{{ data_get($item, 'title') }}</b></div>@endforeach</div>
                     <div class="preview-intro"><small>INFRAESTRUCTURA</small><h3>{{ data_get($content, 'equipment.title') }}</h3><p>{{ data_get($content, 'equipment.description') }}</p>@foreach(data_get($content, 'equipment.items', []) as $item)<h4>{{ data_get($item, 'title') }}</h4><p>{{ data_get($item, 'description') }}</p>@endforeach<p>{{ data_get($content, 'equipment.invitation') }}</p></div>
-                    <div class="preview-projects"><small>CASOS SELECCIONADOS</small><h3>{!! nl2br(e(data_get($content, 'projects.title'))) !!}</h3><div>@foreach(data_get($content, 'projects.items', []) as $index => $project)<article @if(($projectImages[$index] ?? null) || data_get($project, 'image')) style="background-image:linear-gradient(0deg,rgba(0,0,0,.75),transparent),url('{{ ($projectImages[$index] ?? null)?->temporaryUrl() ?? asset('storage/'.data_get($project, 'image')) }}')" @endif><span>{{ data_get($project, 'category') }}</span><b>{{ data_get($project, 'title') }}</b></article>@endforeach</div></div>
+                    <div class="preview-projects"><small>CASOS SELECCIONADOS</small><h3>{!! nl2br(e(data_get($content, 'projects.title'))) !!}</h3><div>@foreach(\App\Models\Project::orderBy('id')->get() as $project)<article @if($project->cover_image) style="background-image:linear-gradient(0deg,rgba(0,0,0,.75),transparent),url('{{ asset('storage/'.$project->cover_image) }}')" @endif><b>{{ $project->title }}</b></article>@endforeach</div></div>
                     <div class="preview-contact"><small>{{ data_get($content, 'contact.eyebrow') }}</small><h3>{!! nl2br(e(data_get($content, 'contact.title'))) !!}</h3></div>
                 </div>
             </div>

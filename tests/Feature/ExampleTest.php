@@ -25,7 +25,9 @@ class ExampleTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('Transformamos');
         $response->assertSee('Capacitación y acompañamiento');
-        $response->assertSee('Cell4cells');
+        $response->assertSee('Talucell');
+        $response->assertSee('Diseño e impresión');
+        $response->assertSee('de modelo anatómico intraoral');
         $response->assertDontSee('Foco estratégico');
         $response->assertSee('news-section');
         $response->assertSee('en movimiento.');
@@ -66,4 +68,33 @@ class ExampleTest extends TestCase
         Storage::disk('public')->assertExists(data_get($page->content, 'hero.image'));
         $this->get('/')->assertOk()->assertSee('Creamos ideas');
     }
+    public function test_editor_can_save_and_replace_a_publication_cover(): void
+    {
+        Storage::fake('public');
+        $this->actingAs(User::factory()->create());
+
+        Livewire::test(\App\Livewire\Admin\PostForm::class)
+            ->set('title', 'Publicación con imagen')
+            ->set('slug', 'publicacion-con-imagen')
+            ->set('excerpt', str_repeat('Resumen de prueba. ', 3))
+            ->set('body', str_repeat('Contenido de la publicación. ', 4))
+            ->set('cover', UploadedFile::fake()->image('portada.jpg')->size(4096))
+            ->call('save')
+            ->assertHasNoErrors()
+            ->assertRedirect(route('admin.posts.index'));
+
+        $post = \App\Models\Post::where('slug', 'publicacion-con-imagen')->firstOrFail();
+        $original = $post->cover_image;
+        $this->assertNotNull($original);
+        Storage::disk('public')->assertExists($original);
+
+        Livewire::test(\App\Livewire\Admin\PostForm::class, ['post' => $post])
+            ->set('cover', UploadedFile::fake()->image('nueva.jpg'))
+            ->call('save')
+            ->assertHasNoErrors();
+
+        Storage::disk('public')->assertExists($post->fresh()->cover_image);
+        Storage::disk('public')->assertMissing($original);
+    }
+
 }

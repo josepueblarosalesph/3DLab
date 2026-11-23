@@ -18,6 +18,8 @@ class HomeController extends Controller
         $posts = Post::published()->latest('published_at')->take(3)->get();
         $content = PageContent::home()->content;
 
-        return view('home', compact('posts', 'content'));
+        $projects = \App\Models\Project::orderBy('id')->take(4)->get();
+
+        return view('home', compact('posts', 'content', 'projects'));
     }
 }

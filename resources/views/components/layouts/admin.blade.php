@@ -20,6 +20,7 @@
             <x-menu activate-by-route>
                 <x-menu-item title="Resumen" icon="o-squares-2x2" :link="route('admin.dashboard')" />
                 <x-menu-item title="Editar sitio" icon="o-paint-brush" :link="route('admin.site.edit')" />
+                <x-menu-item title="Proyectos" icon="o-cube" :link="route('admin.projects.index')" />
                 <x-menu-item title="Publicaciones" icon="o-newspaper" :link="route('admin.posts.index')" />
                 <x-menu-item title="Nueva publicación" icon="o-plus-circle" :link="route('admin.posts.create')" />
                 <x-menu-item title="Consultas" icon="o-inbox" :link="route('admin.inquiries.index')" />

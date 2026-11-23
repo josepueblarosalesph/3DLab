@@ -42,6 +42,7 @@ class PageContent extends Model
                 'title' => 'Desde la universidad hacia la comunidad',
                 'description' => 'Como parte de la universidad, OpenLab conecta el conocimiento académico con la experimentación práctica. Generamos vínculos entre estudiantes, docentes, investigadores, funcionarios, empresas y comunidad, creando oportunidades para desarrollar proyectos que integren distintas disciplinas y perspectivas.',
                 'stats' => [],
+                'image' => null,
             ],
             'capabilities' => [
                 'title' => "Tecnología aplicada\na desafíos reales",
@@ -69,9 +70,18 @@ class PageContent extends Model
                 'title' => 'Proyectos',
                 'description' => 'Cada proyecto que desarrollamos es una oportunidad para explorar nuevas ideas, tecnologías y formas de resolver problemas. Desde prototipos funcionales y piezas personalizadas hasta desarrollos experimentales, cada proyecto refleja una combinación particular de diseño, fabricación, tecnología y colaboración.',
                 'items' => [
-                    ['category' => '', 'year' => '', 'title' => 'Cell4cells', 'description' => '', 'image' => null],
-                    ['category' => '', 'year' => '', 'title' => 'Sensafeet', 'description' => '', 'image' => null],
-                    ['category' => '', 'year' => '', 'title' => 'Desafío Maker', 'description' => '', 'image' => null],
+                    ['category' => '', 'year' => '', 'title' => 'Talucell: Diseño de jeringas para procedimientos con células madre', 'description' => 'Proyecto realizado en conjunto con Cells for Cells, donde se desarrollaron las jeringas para las terapias de tobillo con células madre.
+
+El desafío consistió en lograr una jeringa que permitiera el depósito del tratamiento en la zona específica, manteniendo la presión interior y evitando la pérdida del material.', 'image' => null],
+                    ['category' => '', 'year' => '', 'title' => 'Sensafeet: Sistema de monitoreo en tiempo real para la prevención de úlceras del pie diabético', 'description' => 'La tecnología Sensa Feet consiste en una plantilla a medida con sensores de presión y temperatura que monitorea en tiempo real el pie del paciente, evitando la formación de úlceras. Además, el sistema integra una herramienta telemédica para acercar al paciente al profesional de salud.
+
+En OpenLab, desarrollamos en conjunto con Sensafeet el diseño de plantillas impresas en 3D con TPU, material elástico que con diferentes patrones de relleno (infill) pueden generar diferentes resistencias al peso.', 'image' => null],
+                    ['category' => '', 'year' => '', 'title' => 'Desafío Maker: Diseño e impresión de dispositivos de asistencia para terapia ocupacional', 'description' => 'En el marco del proyecto Desafío Maker que se realizó en conjunto con Teletón, alumnos de las carreras de Terapia Ocupacional, Enfermería e Ingeniería desarrollaron productos para mejorar los tratamientos de rehabilitación.
+
+Para esto se utilizaron técnicas de modelado e impresión 3D para prototipar los objetos y testarlos.', 'image' => null],
+                    ['category' => '', 'year' => '', 'title' => 'Diseño e impresión de modelo anatómico intraoral', 'description' => 'Proyecto realizado junto a la profesora Kiyoko Suzuki, cirujana dentista, donde se escanearon e imprimieron modelos anatómicos de la dentadura de un niño.
+
+Se utilizó para conocer más el alcance del escáner intraoral y su definición en el modelo 3D.', 'image' => null],
                 ],
             ],
             'network' => [
