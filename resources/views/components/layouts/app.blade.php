@@ -44,7 +44,7 @@
         <div class="footer-lead">
             <span class="eyebrow light">{{ data_get($siteContent, 'footer.eyebrow') }}</span>
             <h2>{!! nl2br(e(data_get($siteContent, 'footer.title'))) !!}</h2>
-            <a href="{{ route('home') }}#contacto" class="circle-link" aria-label="Ir a contacto">Contacto</a>
+            <a href="{{ route('home') }}#contacto" class="footer-contact-button" aria-label="Ir a contacto">Contacto</a>
         </div>
         <div class="footer-grid">
             <div><strong class="footer-brand"><img src="{{ asset('images/openlab-display-dark-bg.png') }}" alt="Open Lab"></strong><p>{{ data_get($siteContent, 'footer.description') }}</p></div>

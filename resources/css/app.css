@@ -498,3 +498,7 @@ a.project-visual { display:block; flex-shrink:0; }
 
 .project-visual > img { display:block; width:100%; height:100%; object-fit:cover; }
 .project-visual.project-visual-contain > img { object-fit:contain; background:#fff; }
+
+.footer-contact-button { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:14px 28px; margin-top:32px; border-radius:999px; background:var(--pink); color:var(--ink); font-size:16px; font-weight:500; line-height:1.25; white-space:nowrap; }
+.footer-contact-button:hover { background:var(--paper); }
+.footer-contact-button:focus-visible { outline:2px solid white; outline-offset:4px; }
