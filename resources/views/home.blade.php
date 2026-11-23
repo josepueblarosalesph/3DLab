@@ -24,7 +24,7 @@
                 <a class="about-cta" href="{{ route('about') }}">Conoce quiénes somos</a>
             </div>
             </div>
-            <img class="intro-image" src="{{ data_get($content, 'intro.image') ? asset('storage/'.data_get($content, 'intro.image')) : asset('videos/openlab-infraestructura-poster.jpg') }}" alt="Comunidad OpenLab reunida en una actividad" loading="lazy">
+            <img class="intro-image" src="{{ data_get($content, 'intro.image') ? \App\Support\Media::url(data_get($content, 'intro.image')) : asset('videos/openlab-infraestructura-poster.jpg') }}" alt="Comunidad OpenLab reunida en una actividad" loading="lazy">
         </div>
         @if(data_get($content, 'intro.stats'))
         <div class="impact-grid">

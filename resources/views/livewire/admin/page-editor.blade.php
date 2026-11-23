@@ -39,7 +39,7 @@
                     <label class="editor-field"><span>Frase inferior</span><input wire:model.live.debounce.350ms="content.hero.strapline" maxlength="120"></label>
                     <div class="editor-image-field">
                         <div><strong>Imagen principal</strong><p>JPG, PNG o WebP, máximo 8 MB. Si no cargas una imagen se usará la gráfica original.</p></div>
-                        @php($heroPreview = $heroImage ? $heroImage->temporaryUrl() : (data_get($content, 'hero.image') ? asset('storage/'.data_get($content, 'hero.image')) : asset('og.png')))
+                        @php($heroPreview = $heroImage ? $heroImage->temporaryUrl() : (data_get($content, 'hero.image') ? \App\Support\Media::url(data_get($content, 'hero.image')) : asset('og.png')))
                         <img src="{{ $heroPreview }}" alt="Vista previa de portada">
                         <x-file wire:model="heroImage" accept="image/png,image/jpeg,image/webp" />
                         <div wire:loading wire:target="heroImage" class="editor-uploading">Procesando imagen…</div>
@@ -57,7 +57,7 @@
                     <label class="editor-field"><span>Título</span><textarea wire:model.live.debounce.350ms="content.intro.title" rows="4"></textarea></label>
                     <label class="editor-field"><span>Descripción</span><textarea wire:model.live.debounce.350ms="content.intro.description" rows="4"></textarea></label>
                     <h3 class="editor-subtitle">Imagen de Nosotros</h3>
-                    <img src="{{ $introImage ? $introImage->temporaryUrl() : (data_get($content, 'intro.image') ? asset('storage/'.data_get($content, 'intro.image')) : asset('videos/openlab-infraestructura-poster.jpg')) }}" alt="Vista previa de Nosotros" class="w-64 aspect-video object-cover">
+                    <img src="{{ $introImage ? $introImage->temporaryUrl() : (data_get($content, 'intro.image') ? \App\Support\Media::url(data_get($content, 'intro.image')) : asset('videos/openlab-infraestructura-poster.jpg')) }}" alt="Vista previa de Nosotros" class="w-64 aspect-video object-cover">
                     <x-file wire:model="introImage" accept="image/png,image/jpeg,image/webp" hint="Máximo 8 MB." />
                     @if($introImage || data_get($content, 'intro.image'))<button type="button" wire:click="removeImage('intro.image')" class="editor-remove">Usar imagen original</button>@endif
                     <h3 class="editor-subtitle">Indicadores</h3>
@@ -165,7 +165,7 @@
                     <div class="preview-intro"><small>{{ data_get($content, 'intro.eyebrow') }}</small><h3>{{ data_get($content, 'intro.title') }}</h3><p>{{ data_get($content, 'intro.description') }}</p></div>
                     <div class="preview-capabilities"><small>CAPACIDADES</small><h3>{!! nl2br(e(data_get($content, 'capabilities.title'))) !!}</h3>@foreach(data_get($content, 'capabilities.items', []) as $index => $item)<div><i>0{{ $index + 1 }}</i><b>{{ data_get($item, 'title') }}</b></div>@endforeach</div>
                     <div class="preview-intro"><small>INFRAESTRUCTURA</small><h3>{{ data_get($content, 'equipment.title') }}</h3><p>{{ data_get($content, 'equipment.description') }}</p>@foreach(data_get($content, 'equipment.items', []) as $item)<h4>{{ data_get($item, 'title') }}</h4><p>{{ data_get($item, 'description') }}</p>@endforeach<p>{{ data_get($content, 'equipment.invitation') }}</p></div>
-                    <div class="preview-projects"><small>CASOS SELECCIONADOS</small><h3>{!! nl2br(e(data_get($content, 'projects.title'))) !!}</h3><div>@foreach(\App\Models\Project::orderBy('id')->get() as $project)<article @if($project->cover_image) style="background-image:linear-gradient(0deg,rgba(0,0,0,.75),transparent),url('{{ asset('storage/'.$project->cover_image) }}')" @endif><b>{{ $project->title }}</b></article>@endforeach</div></div>
+                    <div class="preview-projects"><small>CASOS SELECCIONADOS</small><h3>{!! nl2br(e(data_get($content, 'projects.title'))) !!}</h3><div>@foreach(\App\Models\Project::orderBy('id')->get() as $project)<article @if($project->cover_image) style="background-image:linear-gradient(0deg,rgba(0,0,0,.75),transparent),url('{{ \App\Support\Media::url($project->cover_image) }}')" @endif><b>{{ $project->title }}</b></article>@endforeach</div></div>
                     <div class="preview-contact"><small>{{ data_get($content, 'contact.eyebrow') }}</small><h3>{!! nl2br(e(data_get($content, 'contact.title'))) !!}</h3></div>
                 </div>
             </div>

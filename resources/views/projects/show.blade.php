@@ -11,12 +11,12 @@
         </div>
         @if($project->cover_image || $project->gallery)
             <div class="project-detail-media" aria-label="Imágenes del proyecto">
-                @if($project->cover_image)<img class="project-detail-cover" src="{{ asset('storage/'.$project->cover_image) }}" alt="{{ $project->title }}">@endif
+                @if($project->cover_image)<img class="project-detail-cover" src="{{ \App\Support\Media::url($project->cover_image) }}" alt="{{ $project->title }}">@endif
                 @if($project->gallery)
                     <section class="project-gallery" aria-label="Galería de fotos">
                         <h2 class="sr-only">Galería de fotos</h2>
                         @foreach($project->gallery as $photo)
-                            <a href="{{ asset('storage/'.$photo) }}" target="_blank" rel="noopener"><img src="{{ asset('storage/'.$photo) }}" alt="{{ $project->title }} — foto {{ $loop->iteration }}" loading="lazy"></a>
+                            <a href="{{ \App\Support\Media::url($photo) }}" target="_blank" rel="noopener"><img src="{{ \App\Support\Media::url($photo) }}" alt="{{ $project->title }} — foto {{ $loop->iteration }}" loading="lazy"></a>
                         @endforeach
                     </section>
                 @endif

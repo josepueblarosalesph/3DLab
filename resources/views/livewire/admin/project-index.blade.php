@@ -6,7 +6,7 @@
     <div class="space-y-4">
         @forelse($projects as $project)
             <article class="border border-black/10 p-5 flex gap-5 items-center">
-                @if($project->cover_image)<img src="{{ asset('storage/'.$project->cover_image) }}" alt="" class="w-24 h-20 object-cover">@endif
+                @if($project->cover_image)<img src="{{ \App\Support\Media::url($project->cover_image) }}" alt="" class="w-24 h-20 object-cover">@endif
                 <div class="flex-1"><h2 class="font-semibold">{{ $project->title }}</h2>@if($project->subtitle)<p class="text-sm">{{ $project->subtitle }}</p>@endif<p>{{ $project->excerpt() }}</p></div>
                 <x-button label="Editar" :link="route('admin.projects.edit', $project)" class="btn-ghost" />
                 <a href="{{ route('projects.show', $project) }}" target="_blank" rel="noopener">Ver proyecto</a>

@@ -9,14 +9,14 @@
         </div>
         <div class="border border-black/10 bg-white p-6 space-y-4">
             <h2 class="font-semibold">Imagen destacada</h2>
-            @if($cover)<img src="{{ $cover->temporaryUrl() }}" alt="Previsualización" class="w-64 aspect-video object-cover">@elseif($existingCover)<img src="{{ asset('storage/'.$existingCover) }}" alt="Imagen actual" class="w-64 aspect-video object-cover">@endif
+            @if($cover)<img src="{{ $cover->temporaryUrl() }}" alt="Previsualización" class="w-64 aspect-video object-cover">@elseif($existingCover)<img src="{{ \App\Support\Media::url($existingCover) }}" alt="Imagen actual" class="w-64 aspect-video object-cover">@endif
             <x-file label="Seleccionar imagen" wire:model="cover" accept="image/*" hint="Máximo 8 MB." />
             @if($cover || $existingCover)<x-button label="Quitar imagen destacada" wire:click="removeCover" class="btn-ghost" />@endif
         </div>
         <div class="border border-black/10 bg-white p-6 space-y-4">
             <h2 class="font-semibold">Galería de fotos</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                @foreach($gallery as $index => $photo)<div wire:key="gallery-{{ $index }}-{{ md5($photo) }}"><img src="{{ asset('storage/'.$photo) }}" alt="Foto {{ $index + 1 }}" class="aspect-video w-full object-cover"><x-button label="Quitar foto" wire:click="removePhoto({{ $index }})" class="btn-ghost btn-sm" /></div>@endforeach
+                @foreach($gallery as $index => $photo)<div wire:key="gallery-{{ $index }}-{{ md5($photo) }}"><img src="{{ \App\Support\Media::url($photo) }}" alt="Foto {{ $index + 1 }}" class="aspect-video w-full object-cover"><x-button label="Quitar foto" wire:click="removePhoto({{ $index }})" class="btn-ghost btn-sm" /></div>@endforeach
                 @foreach($photos as $photo)<img src="{{ $photo->temporaryUrl() }}" alt="Nueva foto" class="aspect-video w-full object-cover">@endforeach
             </div>
             <x-file label="Agregar fotos" wire:model="photos" multiple accept="image/*" hint="Hasta 30 fotos por carga. Máximo 8 MB por foto." />
