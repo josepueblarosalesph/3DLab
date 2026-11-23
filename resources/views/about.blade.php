@@ -1,6 +1,5 @@
 <x-public-layout title="Quiénes somos — Open Lab" :site-content="$content">
     <section class="page-hero about-hero">
-        <a class="about-breadcrumb" href="{{ route('home') }}">Inicio <span aria-hidden="true">/</span></a>
         <span class="eyebrow">Open Lab · Universidad de los Andes</span>
         <h1>Quiénes somos.</h1>
         <p>{{ data_get($content, 'hero.description') }}</p>
