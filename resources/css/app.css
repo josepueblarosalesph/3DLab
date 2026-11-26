@@ -208,7 +208,6 @@ html,.public-site { background:var(--paper-soft); }
 .section-index span:first-child,.eyebrow { color:var(--pink); }
 .intro-section { background:var(--paper); }
 .intro-main h2,.section-heading h2,.network-copy h2 { font-weight:400; letter-spacing:-.05em; }
-.intro-main h2::first-letter { color:var(--pink); }
 .impact-grid strong { color:var(--plum); font-weight:400; }
 .impact-grid div { border-color:rgba(20,32,48,.18); }
 
